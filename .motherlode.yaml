@@ -10,6 +10,9 @@ runbook: |
   Node + TypeScript, PM2 flashcards, bind 127.0.0.1:47865.
   HTTPS e SSO pelo Personal Auth no perfil gateway-origin.
   Build: npm run build. Deploy: pm2 startOrReload ecosystem.config.cjs --only flashcards --update-env.
+  Espelho publico sem SSO em https://andrey59412678.github.io/flashcards/, para quem esta fora do tailnet.
+  Repo publico github.com/andrey59412678/flashcards; push na main dispara .github/workflows/pages.yml, que roda npm test e publica public/.
+  Os assets resolvem por import.meta.url, entao o mesmo public/ serve na raiz local e no subpath do Pages.
   Deck inicial: public/decks.json, 86 placas das imagens de referencia (55 advertencia, 31 regulamentacao).
   Imagens originais em public/assets; o SVG recorta apenas o simbolo em cada cartao.
   Progresso e ordem ficam no localStorage do navegador, chave flashcards.session.v1; nenhum banco no servidor.
