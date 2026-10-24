@@ -1,0 +1,1560 @@
+{
+  "version": 1,
+  "decks": [
+    {
+      "id": "autoescola",
+      "title": "Placas de trânsito",
+      "description": "86 placas das imagens de referência: 55 de advertência e 31 de regulamentação.",
+      "cards": [
+        {
+          "id": "warning-01",
+          "category": "warning",
+          "sourceCode": "A-1a",
+          "answer": "Curva acentuada à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              21,
+              52,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-02",
+          "category": "warning",
+          "sourceCode": "A-1b",
+          "answer": "Curva acentuada à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              21,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-03",
+          "category": "warning",
+          "sourceCode": "A-2a",
+          "answer": "Curva à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              21,
+              54,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-04",
+          "category": "warning",
+          "sourceCode": "A-2b",
+          "answer": "Curva à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              21,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-05",
+          "category": "warning",
+          "sourceCode": "A-3a",
+          "answer": "Pista sinuosa à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              420,
+              21,
+              52,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-06",
+          "category": "warning",
+          "sourceCode": "A-3b",
+          "answer": "Pista sinuosa à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              131,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-07",
+          "category": "warning",
+          "sourceCode": "A-4a",
+          "answer": "Curva acentuada em \"S\" à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              131,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-08",
+          "category": "warning",
+          "sourceCode": "A-4b",
+          "answer": "Curva acentuada em \"S\" à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              131,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-09",
+          "category": "warning",
+          "sourceCode": "A-5a",
+          "answer": "Curva em \"S\" à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              131,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-10",
+          "category": "warning",
+          "sourceCode": "A-5b",
+          "answer": "Curva em \"S\" à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              130,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-11",
+          "category": "warning",
+          "sourceCode": "A-6",
+          "answer": "Cruzamento de vias",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              252,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-12",
+          "category": "warning",
+          "sourceCode": "A-7a",
+          "answer": "Via lateral à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              252,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-13",
+          "category": "warning",
+          "sourceCode": "A-7b",
+          "answer": "Via lateral à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              252,
+              54,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-14",
+          "category": "warning",
+          "sourceCode": "A-8",
+          "answer": "Interseção em \"T\"",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              253,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-15",
+          "category": "warning",
+          "sourceCode": "A-9",
+          "answer": "Bifurcação em \"Y\"",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              252,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-16",
+          "category": "warning",
+          "sourceCode": "A-10a",
+          "answer": "Entroncamento oblíquo à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              33,
+              361,
+              54,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-17",
+          "category": "warning",
+          "sourceCode": "A-10b",
+          "answer": "Entroncamento oblíquo à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              361,
+              54,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-18",
+          "category": "warning",
+          "sourceCode": "A-11a",
+          "answer": "Junções sucessivas contrárias primeira à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              362,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-19",
+          "category": "warning",
+          "sourceCode": "A-11b",
+          "answer": "Junções sucessivas contrárias primeira à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              362,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-20",
+          "category": "warning",
+          "sourceCode": "A-12",
+          "answer": "Interseção em círculo",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              362,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-21",
+          "category": "warning",
+          "sourceCode": "A-13a",
+          "answer": "Confluência à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              496,
+              53,
+              52
+            ]
+          }
+        },
+        {
+          "id": "warning-22",
+          "category": "warning",
+          "sourceCode": "A-13b",
+          "answer": "Confluência à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              495,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-23",
+          "category": "warning",
+          "sourceCode": "A-14",
+          "answer": "Semáforo à frente",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              495,
+              54,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-24",
+          "category": "warning",
+          "sourceCode": "A-15",
+          "answer": "Parada obrigatória à frente",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              495,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-25",
+          "category": "warning",
+          "sourceCode": "A-45",
+          "answer": "Rua sem saída",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              495,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-26",
+          "category": "warning",
+          "sourceCode": "A-17",
+          "answer": "Pista irregular",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              604,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-27",
+          "category": "warning",
+          "sourceCode": "A-18",
+          "answer": "Saliência ou lombada",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              605,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-28",
+          "category": "warning",
+          "sourceCode": "A-19",
+          "answer": "Depressão",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              604,
+              54,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-29",
+          "category": "warning",
+          "sourceCode": "A-20a",
+          "answer": "Declive acentuado",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              605,
+              53,
+              52
+            ]
+          }
+        },
+        {
+          "id": "warning-30",
+          "category": "warning",
+          "sourceCode": "A-20b",
+          "answer": "Aclive acentuado",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              604,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-31",
+          "category": "warning",
+          "sourceCode": "A-21a",
+          "answer": "Estreitamento de pista ao centro",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              713,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-32",
+          "category": "warning",
+          "sourceCode": "A-21b",
+          "answer": "Estreitamento de pista à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              713,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-33",
+          "category": "warning",
+          "sourceCode": "A-21c",
+          "answer": "Estreitamento de pista à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              714,
+              54,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-34",
+          "category": "warning",
+          "sourceCode": "A-21d",
+          "answer": "Alargamento de pista à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              714,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-35",
+          "category": "warning",
+          "sourceCode": "A-21e",
+          "answer": "Alargamento de pista à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              714,
+              53,
+              52
+            ]
+          }
+        },
+        {
+          "id": "warning-36",
+          "category": "warning",
+          "sourceCode": "A-30c",
+          "answer": "Trânsito compartilhado por ciclistas e pedestres",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              823,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-37",
+          "category": "warning",
+          "sourceCode": "A-23",
+          "answer": "Ponte móvel",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              823,
+              53,
+              52
+            ]
+          }
+        },
+        {
+          "id": "warning-38",
+          "category": "warning",
+          "sourceCode": "A-24",
+          "answer": "Obras",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              227,
+              823,
+              52,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-39",
+          "category": "warning",
+          "sourceCode": "A-25",
+          "answer": "Mão dupla adiante",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              322,
+              823,
+              54,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-40",
+          "category": "warning",
+          "sourceCode": "A-26a",
+          "answer": "Sentido único",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              417,
+              833,
+              57,
+              33
+            ]
+          }
+        },
+        {
+          "id": "warning-41",
+          "category": "warning",
+          "sourceCode": "A-26b",
+          "answer": "Sentido duplo",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              32,
+              968,
+              57,
+              32
+            ]
+          }
+        },
+        {
+          "id": "warning-42",
+          "category": "warning",
+          "sourceCode": "A-27",
+          "answer": "Área com desmoronamento",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              957,
+              52,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-43",
+          "category": "warning",
+          "sourceCode": "A-28",
+          "answer": "Pista escorregadia",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              957,
+              54,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-44",
+          "category": "warning",
+          "sourceCode": "A-30a",
+          "answer": "Trânsito de ciclistas",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              323,
+              957,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-45",
+          "category": "warning",
+          "sourceCode": "A-32a",
+          "answer": "Trânsito de pedestres",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              957,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-46",
+          "category": "warning",
+          "sourceCode": "A-32b",
+          "answer": "Passagem sinalizada de pedestres",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              1066,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-47",
+          "category": "warning",
+          "sourceCode": "A-33a",
+          "answer": "Área escolar",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              1067,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-48",
+          "category": "warning",
+          "sourceCode": "A-33b",
+          "answer": "Passagem sinalizada de escolares",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              1066,
+              53,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-49",
+          "category": "warning",
+          "sourceCode": "A-42a",
+          "answer": "Início de pista dupla",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              322,
+              1066,
+              54,
+              54
+            ]
+          }
+        },
+        {
+          "id": "warning-50",
+          "category": "warning",
+          "sourceCode": "A-42b",
+          "answer": "Fim de pista dupla",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              419,
+              1067,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-51",
+          "category": "warning",
+          "sourceCode": "A-42c",
+          "answer": "Pista dividida",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              34,
+              1188,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-52",
+          "category": "warning",
+          "sourceCode": "A-43",
+          "answer": "Aeroporto",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              130,
+              1188,
+              53,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-53",
+          "category": "warning",
+          "sourceCode": "A-42c",
+          "answer": "Passagem de nível sem barreira",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              226,
+              1188,
+              54,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-54",
+          "category": "warning",
+          "sourceCode": "A-43",
+          "answer": "Passagem de nível com barreira",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              322,
+              1188,
+              54,
+              53
+            ]
+          }
+        },
+        {
+          "id": "warning-55",
+          "category": "warning",
+          "sourceCode": "A-42c",
+          "answer": "Cruz de Santo André",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/advertencia.png",
+            "width": 506,
+            "height": 1280,
+            "crop": [
+              412,
+              1192,
+              66,
+              44
+            ]
+          }
+        },
+        {
+          "id": "regulation-01",
+          "category": "regulation",
+          "sourceCode": "R-1",
+          "answer": "Parada obrigatória",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              47,
+              36,
+              79,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-02",
+          "category": "regulation",
+          "sourceCode": "R-2",
+          "answer": "Dê a preferência",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              185,
+              40,
+              80,
+              71
+            ]
+          }
+        },
+        {
+          "id": "regulation-03",
+          "category": "regulation",
+          "sourceCode": "R-3",
+          "answer": "Sentido proibido",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              323,
+              36,
+              81,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-04",
+          "category": "regulation",
+          "sourceCode": "R-4a",
+          "answer": "Proibido virar à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              462,
+              36,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-05",
+          "category": "regulation",
+          "sourceCode": "R-4b",
+          "answer": "Proibido virar à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              600,
+              36,
+              82,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-06",
+          "category": "regulation",
+          "sourceCode": "R-5a",
+          "answer": "Proibido retornar à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              46,
+              194,
+              81,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-07",
+          "category": "regulation",
+          "sourceCode": "R-5b",
+          "answer": "Proibido retornar à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              185,
+              193,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-08",
+          "category": "regulation",
+          "sourceCode": "R-6a",
+          "answer": "Proibido estacionar",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              323,
+              194,
+              81,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-09",
+          "category": "regulation",
+          "sourceCode": "R-6b",
+          "answer": "Estacionamento regulamentado",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              462,
+              194,
+              81,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-10",
+          "category": "regulation",
+          "sourceCode": "R-6c",
+          "answer": "Proibido parar e estacionar",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              600,
+              193,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-11",
+          "category": "regulation",
+          "sourceCode": "R-7",
+          "answer": "Proibido ultrapassar",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              46,
+              369,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-12",
+          "category": "regulation",
+          "sourceCode": "R-8a",
+          "answer": "Proibido mudar de faixa ou pista de trânsito da esquerda para direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              185,
+              369,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-13",
+          "category": "regulation",
+          "sourceCode": "R-8b",
+          "answer": "Proibido mudar de faixa ou pista de trânsito da direita para esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              323,
+              369,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-14",
+          "category": "regulation",
+          "sourceCode": "R-19",
+          "answer": "Velocidade máxima permitida",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              462,
+              369,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-15",
+          "category": "regulation",
+          "sourceCode": "R-10",
+          "answer": "Proibido trânsito de veículos automotores",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              601,
+              369,
+              80,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-16",
+          "category": "regulation",
+          "sourceCode": "R-34",
+          "answer": "Circulação exclusiva de bicicletas",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              46,
+              578,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-17",
+          "category": "regulation",
+          "sourceCode": "R-20",
+          "answer": "Proibido acionar buzina ou sinal sonoro",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              185,
+              579,
+              81,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-18",
+          "category": "regulation",
+          "sourceCode": "R-28",
+          "answer": "Duplo sentido de circulação",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              323,
+              578,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-19",
+          "category": "regulation",
+          "sourceCode": "R-29",
+          "answer": "Proibido trânsito de pedestres",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              462,
+              578,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-20",
+          "category": "regulation",
+          "sourceCode": "R-23",
+          "answer": "Conserve-se à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              601,
+              579,
+              80,
+              80
+            ]
+          }
+        },
+        {
+          "id": "regulation-21",
+          "category": "regulation",
+          "sourceCode": "R-24a",
+          "answer": "Sentido de circulação da via/pista",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              46,
+              753,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-22",
+          "category": "regulation",
+          "sourceCode": "R-24b",
+          "answer": "Passagem obrigatória",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              185,
+              753,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-23",
+          "category": "regulation",
+          "sourceCode": "R-25a",
+          "answer": "Vire à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              323,
+              753,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-24",
+          "category": "regulation",
+          "sourceCode": "R-25b",
+          "answer": "Vire à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              462,
+              753,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-25",
+          "category": "regulation",
+          "sourceCode": "R-25c",
+          "answer": "Siga em frente ou à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              601,
+              753,
+              80,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-26",
+          "category": "regulation",
+          "sourceCode": "R-25d",
+          "answer": "Siga em frente ou à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              46,
+              928,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-27",
+          "category": "regulation",
+          "sourceCode": "R-26",
+          "answer": "Siga em frente",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              185,
+              928,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-28",
+          "category": "regulation",
+          "sourceCode": "R-33",
+          "answer": "Sentido de circulação na rotatória",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              323,
+              928,
+              81,
+              81
+            ]
+          }
+        },
+        {
+          "id": "regulation-29",
+          "category": "regulation",
+          "sourceCode": "R-35a",
+          "answer": "Ciclista, transite à esquerda",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              462,
+              927,
+              81,
+              82
+            ]
+          }
+        },
+        {
+          "id": "regulation-30",
+          "category": "regulation",
+          "sourceCode": "R-35b",
+          "answer": "Ciclista, transite à direita",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              600,
+              927,
+              82,
+              82
+            ]
+          }
+        },
+        {
+          "id": "regulation-31",
+          "category": "regulation",
+          "sourceCode": "R-32",
+          "answer": "Circulação exclusiva de ônibus",
+          "prompt": "Qual é o significado desta placa?",
+          "image": {
+            "src": "/assets/regulamentacao.png",
+            "width": 728,
+            "height": 1280,
+            "crop": [
+              46,
+              1104,
+              81,
+              82
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

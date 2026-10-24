@@ -1,0 +1,28 @@
+id: flashcards
+host_kind: pm2_process
+purpose: "Flashcards pessoais para autoescola: identificar placas e revelar o significado, com baralho embaralhado e interface mobile."
+tags: [personal, study, flashcards, autoescola, mobile]
+url: https://flashcards.apps.home.arpa
+ports: [47865]
+requires_https: true
+runbook: |
+  Repo: /home/andrey/projects/personal/flashcards.
+  Node + TypeScript, PM2 flashcards, bind 127.0.0.1:47865.
+  HTTPS e SSO pelo Personal Auth no perfil gateway-origin.
+  Build: npm run build. Deploy: pm2 startOrReload ecosystem.config.cjs --only flashcards --update-env.
+  Deck inicial: public/decks.json, 86 placas das imagens de referencia (55 advertencia, 31 regulamentacao).
+  Imagens originais em public/assets; o SVG recorta apenas o simbolo em cada cartao.
+  Progresso e ordem ficam no localStorage do navegador, chave flashcards.session.v1; nenhum banco no servidor.
+  Novos cards aceitam prompt e answer em texto, image opcional; novos decks aparecem no seletor.
+  Códigos sourceCode preservam a fonte e não são exibidos; última linha da imagem de advertência contém códigos repetidos.
+commands:
+  health:
+    check: "curl -fsS http://127.0.0.1:47865/health"
+  restart:
+    run: "pm2 restart flashcards"
+agent_instructions: |
+  Use npm. Valide npm test, npm run typecheck e npm run build antes do restart da propria tool.
+  Preserve imagens e significado de cada card; nao gere simbolos de transito com IA.
+  Para acrescentar assunto, edite public/decks.json com um deck de id unico e cards com id, prompt, answer e image opcional.
+  A resposta deve estar ausente da frente e voltar escondida ao avancar, voltar, embaralhar ou recarregar.
+  Mantenha bind loopback e a rota SSO em /home/andrey/projects/personal-auth/config/apps.json.

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#182b36">
+  <meta name="description" content="Seu treino de memória: veja a placa, pense no significado e revele a resposta.">
+  <title>Flashcards · Autoescola</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="Flashcards, início"><img src="./favicon.svg" alt="" width="36" height="36"><span>flashcards</span></a>
+      <span class="subject">Autoescola</span>
+    </header>
+    <main>
+      <div class="deck-heading">
+        <div><h1 id="deck-title">Placas de trânsito</h1><p id="deck-description">Veja a placa. Lembre o significado.</p></div>
+        <button class="icon-button" id="shuffle" type="button" aria-label="Embaralhar e recomeçar" title="Embaralhar e recomeçar" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3.5-2 5-5m2-3c1.4-2.4 2.8-4 5-4h3m-4-4 4 4-4 4"/></svg></button>
+      </div>
+      <label class="deck-picker" id="deck-picker" hidden>Baralho<select id="deck-select"></select></label>
+      <div class="filters" role="group" aria-label="Tipos de placa">
+        <button data-filter="all" class="filter active" aria-pressed="true" disabled>Todas <span data-count="all">86</span></button>
+        <button data-filter="warning" class="filter" aria-pressed="false" disabled><span class="category-dot warning-dot" aria-hidden="true"></span>Advertência</button>
+        <button data-filter="regulation" class="filter" aria-pressed="false" disabled><span class="category-dot regulation-dot" aria-hidden="true"></span>Regulamentação</button>
+      </div>
+      <div id="study" hidden>
+        <div class="progress-caption"><span id="position">Cartão 1 de 86</span><span id="remaining">85 restantes</span></div>
+        <progress id="progress" max="86" value="0" aria-label="Progresso da rodada"></progress>
+        <article id="flashcard" class="flashcard" aria-label="Cartão de estudo">
+          <div class="card-topline"><span id="card-category">Placa de trânsito</span><span class="card-mark" aria-hidden="true"><span></span><span></span><span></span></span></div>
+          <div id="visual" class="visual"></div>
+          <div class="card-copy"><p id="prompt" class="prompt" hidden></p><div id="answer-area" class="answer-area" aria-live="polite" aria-atomic="true"></div></div>
+        </article>
+        <div class="study-actions">
+          <button id="previous" class="previous" type="button" aria-label="Cartão anterior" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+          <button id="primary" class="primary" type="button"><span id="primary-label">Revelar resposta</span><svg id="reveal-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><svg id="next-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <button id="hide-answer" class="text-button" type="button" hidden>Ocultar resposta</button>
+      </div>
+      <section id="completed" class="completed" aria-labelledby="completed-title" hidden>
+        <div class="finish-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></div>
+        <h2 id="completed-title">Rodada concluída!</h2>
+        <p id="completed-description"></p>
+        <button id="restart" class="primary" type="button">Embaralhar e recomeçar<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11a8 8 0 1 1 2 7M4 4v7h7"/></svg></button>
+        <button id="repeat" class="text-button" type="button">Rever na mesma ordem</button>
+      </section>
+      <section id="loading" class="loading" role="status"><span class="loading-dot"></span>Preparando os cartões…</section>
+      <section id="error" class="error" hidden><h2>Não deu para abrir o baralho</h2><p>Confira a conexão e tente novamente.</p><button id="retry" class="primary" type="button">Tentar novamente</button></section>
+      <p id="storage-notice" class="storage-notice" hidden>O navegador não permitiu salvar o progresso. Você pode continuar estudando nesta aba.</p>
+    </main>
+    <footer><span class="footer-dash" aria-hidden="true"></span>Um cartão de cada vez.<span class="keyboard-hint">Espaço revela · → avança</span></footer>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <noscript>Ative o JavaScript no navegador para estudar os cartões.</noscript>
+  </div>
+</body>
+</html>
