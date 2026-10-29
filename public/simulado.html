@@ -22,10 +22,15 @@
         <h1>Prova teórica</h1>
         <p class="lede" id="exam-rules"></p>
         <button id="start" class="primary" type="button">Começar prova<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
-        <button id="resume" class="secondary" type="button" hidden>Continuar prova em andamento</button>
+        <button id="resume" class="secondary" type="button" hidden>Continuar de onde parei</button>
         <button id="review" class="secondary" type="button" hidden></button>
         <p class="bank-size" id="bank-size"></p>
-        <div id="history" class="history" hidden><h2>Últimas provas</h2><ol id="history-list"></ol></div>
+        <section class="study-box" aria-labelledby="study-title">
+          <h2 id="study-title">Estudar por tema</h2>
+          <p class="study-hint">Rodadas de 10 questões. A resposta certa e o comentário aparecem logo depois de cada uma.</p>
+          <div id="study-topics" class="study-topics"></div>
+        </section>
+        <div id="history" class="history" hidden><h2>Últimas rodadas</h2><ol id="history-list"></ol></div>
       </section>
 
       <section id="exam" hidden>
@@ -39,6 +44,7 @@
           <div id="q-image" class="question-image" hidden></div>
           <p id="q-text" class="question-text"></p>
           <div id="q-options" class="options" role="radiogroup" aria-labelledby="q-text"></div>
+          <div id="q-feedback" class="feedback" aria-live="polite" hidden><p class="feedback-verdict" id="q-verdict"></p><p class="feedback-why" id="q-why"></p></div>
         </article>
         <div class="study-actions">
           <button id="q-prev" class="previous" type="button" aria-label="Questão anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
@@ -73,12 +79,12 @@
     </main>
     <dialog id="confirm" class="confirm">
       <form method="dialog">
-        <h2>Entregar a prova?</h2>
+        <h2 id="confirm-title">Entregar a prova?</h2>
         <p id="confirm-text"></p>
-        <div class="confirm-actions"><button value="cancel" class="secondary">Voltar à prova</button><button value="ok" class="primary">Entregar</button></div>
+        <div class="confirm-actions"><button value="cancel" class="secondary">Voltar à prova</button><button value="ok" class="primary" id="confirm-ok">Entregar</button></div>
       </form>
     </dialog>
-    <footer><span class="footer-dash" aria-hidden="true"></span>A correção só aparece no final, como na prova.<span class="footer-note">Questões: Banco Nacional de Questões (Senatran) · <a class="credits" href="./assets/signs/CREDITOS.txt">créditos das placas</a></span></footer>
+    <footer><span class="footer-dash" aria-hidden="true"></span>Na prova, a correção vem no final. No estudo, vem na hora.<span class="footer-note">Questões: Banco Nacional de Questões (Senatran) · <a class="credits" href="./assets/signs/CREDITOS.txt">créditos das placas</a></span></footer>
     <div class="toast" id="toast" role="status" hidden></div>
     <noscript>Ative o JavaScript no navegador para fazer o simulado.</noscript>
   </div>

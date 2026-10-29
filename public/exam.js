@@ -43,18 +43,45 @@ function validateImage(image, id) {
   if (x < 0 || y < 0 || w <= 0 || h <= 0 || x + w > width || y + h > height) throw new Error(`Invalid crop ${id}`);
 }
 
+// Questions never answered come first, so repeated rounds walk through the whole bank before repeating.
+function unseenFirst(questions, seen, random) {
+  const seenSet = new Set(seen);
+  return [...shuffled(questions.filter(q => !seenSet.has(q.id)), random), ...shuffled(questions.filter(q => seenSet.has(q.id)), random)];
+}
+
 // Mirrors the real exam: N questions per topic, topped up from other topics if one runs short.
-export function drawExam(bank, random = Math.random) {
+export function drawExam(bank, random = Math.random, seen = []) {
   const { distribution, questions: size } = bank.exam;
   const picked = [];
   for (const [topic, count] of Object.entries(distribution)) {
-    picked.push(...shuffled(bank.questions.filter(q => q.topic === topic), random).slice(0, count).map(q => q.id));
+    picked.push(...unseenFirst(bank.questions.filter(q => q.topic === topic), seen, random).slice(0, count).map(q => q.id));
   }
   if (picked.length < size) {
     const taken = new Set(picked);
-    picked.push(...shuffled(bank.questions.filter(q => !taken.has(q.id)), random).slice(0, size - picked.length).map(q => q.id));
+    picked.push(...unseenFirst(bank.questions.filter(q => !taken.has(q.id)), seen, random).slice(0, size - picked.length).map(q => q.id));
   }
   return shuffled(picked, random);
+}
+
+export function drawStudy(bank, topic, size, random = Math.random, seen = []) {
+  return unseenFirst(bank.questions.filter(q => q.topic === topic), seen, random).slice(0, size).map(q => q.id);
+}
+
+export function coverage(bank, seen) {
+  const seenSet = new Set(seen ?? []);
+  const result = {};
+  for (const topic of Object.keys(TOPICS)) {
+    const ids = bank.questions.filter(q => q.topic === topic).map(q => q.id);
+    result[topic] = { seen: ids.filter(id => seenSet.has(id)).length, total: ids.length };
+  }
+  return result;
+}
+
+export function updateSeen(seen, attempt, bank) {
+  const known = new Set(bank.questions.map(q => q.id));
+  const next = new Set((seen ?? []).filter(id => known.has(id)));
+  attempt.ids.forEach((id, position) => { if (attempt.answers[position] !== null) next.add(id); });
+  return [...next];
 }
 
 // Option order is reshuffled per attempt so position never becomes the thing memorised.
@@ -79,6 +106,8 @@ export function newAttempt(ids, { now, minutes = null, kind = 'exam', orders }) 
 
 export function choose(attempt, option) {
   if (attempt.finishedAt) return attempt;
+  // Study rounds reveal the answer right away, so the first choice is final.
+  if (attempt.kind === 'study' && attempt.answers[attempt.index] !== null) return attempt;
   const answers = [...attempt.answers];
   answers[attempt.index] = answers[attempt.index] === option ? null : option;
   return { ...attempt, answers };
@@ -128,7 +157,7 @@ export function score(attempt, bank) {
 }
 
 export function restoreAttempt(bank, saved) {
-  if (!saved || saved.version !== 1 || !['exam', 'review'].includes(saved.kind)) return null;
+  if (!saved || saved.version !== 1 || !['exam', 'review', 'study'].includes(saved.kind)) return null;
   const known = new Set(bank.questions.map(q => q.id));
   const { ids, answers, index } = saved;
   if (!Array.isArray(ids) || !ids.length || new Set(ids).size !== ids.length || ids.some(id => !known.has(id))) return null;

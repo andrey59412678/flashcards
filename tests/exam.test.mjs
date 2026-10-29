@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { access, readFile } from 'node:fs/promises';
-import { TOPICS, validateBank, drawExam, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from '../public/exam.js';
+import { TOPICS, validateBank, drawExam, drawStudy, coverage, updateSeen, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from '../public/exam.js';
 
 const real = validateBank(JSON.parse(await readFile(new URL('../public/questions.json', import.meta.url), 'utf8')));
 
@@ -130,6 +130,40 @@ test('every sign image in the bank exists and no question asks about a sign it c
   for (const question of real.questions.filter(q => q.sign && !q.image)) {
     assert.match(question.text, /placa (azul|marrom|verde|“)/i, question.id);
   }
+});
+
+test('unseen questions are drawn before any repeat, for exams and study rounds', () => {
+  const bank = syntheticBank(20);
+  let seen = [];
+  const drawnPlacas = new Set();
+  for (let round = 0; round < 2; round++) {
+    const ids = drawStudy(bank, 'placas', 10, Math.random, seen);
+    assert.equal(ids.length, 10);
+    for (const id of ids) {
+      assert.ok(id.startsWith('placas-'));
+      assert.ok(!drawnPlacas.has(id), 'repeated before the topic was exhausted');
+      drawnPlacas.add(id);
+    }
+    const attempt = { ...newAttempt(ids, { now: 0, kind: 'study' }), answers: ids.map(() => 0) };
+    seen = updateSeen(seen, attempt, bank);
+  }
+  assert.equal(coverage(bank, seen).placas.seen, 20);
+  assert.equal(coverage(bank, seen).cuidar.seen, 0);
+  const exam = drawExam(bank, Math.random, bank.questions.filter(q => q.topic !== 'cuidar' || Number(q.id.split('-')[1]) < 10).map(q => q.id));
+  const cuidar = exam.filter(id => id.startsWith('cuidar-'));
+  assert.ok(cuidar.every(id => Number(id.split('-')[1]) >= 10), 'exam picked a seen question while unseen ones remained');
+});
+
+test('blank answers do not count as seen and a study answer cannot be changed once revealed', () => {
+  const bank = syntheticBank();
+  const ids = ['placas-0', 'placas-1'];
+  const exam = { ...newAttempt(ids, { now: 0, minutes: 60 }), answers: [2, null] };
+  assert.deepEqual(updateSeen(['gone'], exam, bank), ['placas-0']);
+  let study = newAttempt(ids, { now: 0, kind: 'study' });
+  study = choose(study, 3);
+  assert.equal(choose(study, 1).answers[0], 3);
+  assert.equal(choose(study, 3).answers[0], 3);
+  assert.equal(restoreAttempt(bank, JSON.parse(JSON.stringify(study))).kind, 'study');
 });
 
 test('a saved attempt survives reload and corrupted storage is discarded', () => {

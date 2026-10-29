@@ -1,7 +1,9 @@
-import { TOPICS, validateBank, drawExam, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from './exam.js';
+import { TOPICS, validateBank, drawExam, drawStudy, coverage, updateSeen, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from './exam.js';
 
 const $ = id => document.getElementById(id);
-const KEYS = { attempt: 'simulado.attempt.v1', missed: 'simulado.missed.v1', history: 'simulado.history.v1' };
+const KEYS = { attempt: 'simulado.attempt.v1', missed: 'simulado.missed.v1', history: 'simulado.history.v1', seen: 'simulado.seen.v1' };
+const STUDY_SIZE = 10;
+const KIND_NAMES = { exam: 'Prova', review: 'Treino de erros', study: 'Estudo' };
 const LETTERS = 'ABCDE';
 const appBase = new URL('.', import.meta.url);
 const assetUrl = path => new URL(path.replace(/^\//, ''), appBase).href;
@@ -75,14 +77,31 @@ function renderHome() {
   $('review').textContent = `Treinar as que errei (${missed.length})`;
   $('resume').hidden = !(attempt && !attempt.finishedAt);
   $('start').firstChild.textContent = attempt && !attempt.finishedAt ? 'Começar uma prova nova' : 'Começar prova';
-  $('bank-size').textContent = `Banco com ${bank.questions.length} questões. Cada prova sorteia questões diferentes.`;
+  const seen = load(KEYS.seen, []).filter(id => byId.has(id));
+  $('bank-size').textContent = seen.length
+    ? `Você já respondeu ${seen.length} das ${bank.questions.length} questões do banco oficial. As inéditas são sorteadas primeiro.`
+    : `Banco oficial com ${bank.questions.length} questões. Cada prova sorteia questões diferentes.`;
+  const covered = coverage(bank, seen);
+  $('study-topics').replaceChildren(...Object.entries(TOPICS).map(([topic, name]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'study-topic';
+    button.innerHTML = '<span class="study-name"></span><span class="topic-bar"><span></span></span><span class="study-count"></span>';
+    button.children[0].textContent = name;
+    const { seen: done, total } = covered[topic];
+    button.children[1].firstChild.style.width = `${Math.round(100 * done / total)}%`;
+    button.children[2].textContent = `${done}/${total}`;
+    button.setAttribute('aria-label', `Estudar ${name}: ${done} de ${total} questões já respondidas`);
+    button.addEventListener('click', () => startAttempt(drawStudy(bank, topic, STUDY_SIZE, Math.random, load(KEYS.seen, [])), 'study'));
+    return button;
+  }));
   const history = load(KEYS.history, []);
   $('history').hidden = !history.length;
   $('history-list').replaceChildren(...history.slice(0, 6).map(entry => {
     const item = document.createElement('li');
     const date = new Date(entry.at).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
     item.innerHTML = `<span></span><strong></strong>`;
-    item.firstChild.textContent = `${date} · ${entry.kind === 'exam' ? 'Prova' : 'Treino de erros'}`;
+    item.firstChild.textContent = `${date} · ${KIND_NAMES[entry.kind] ?? 'Treino'}${entry.topic ? ` · ${TOPICS[entry.topic]}` : ''}`;
     item.lastChild.textContent = `${entry.correct}/${entry.total}`;
     item.classList.add(entry.passed ? 'pass' : 'fail');
     return item;
@@ -102,12 +121,20 @@ function renderQuestion() {
   $('q-image').hidden = !question.image;
   $('q-image').replaceChildren(...(question.image ? [signSvg(question.image, 'q-sign-clip')] : []));
   $('q-text').textContent = question.text;
+  const given = attempt.answers[attempt.index];
+  // In a study round the answer is revealed as soon as one option is picked.
+  const revealed = attempt.kind === 'study' && given !== null;
   $('q-options').replaceChildren(...attempt.orders[attempt.index].map((index, position) => {
     const option = question.options[index];
     const button = document.createElement('button');
-    const selected = attempt.answers[attempt.index] === index;
+    const selected = given === index;
     button.type = 'button';
     button.className = 'option';
+    if (revealed) {
+      button.disabled = true;
+      if (index === question.answer) button.classList.add('right');
+      else if (selected) button.classList.add('wrong');
+    }
     button.setAttribute('role', 'radio');
     button.setAttribute('aria-checked', String(selected));
     button.innerHTML = '<span class="letter"></span><span class="option-text"></span>';
@@ -120,8 +147,20 @@ function renderQuestion() {
     });
     return button;
   }));
+  $('q-feedback').hidden = !revealed;
+  if (revealed) {
+    const right = given === question.answer;
+    $('q-feedback').classList.toggle('right', right);
+    $('q-feedback').classList.toggle('wrong', !right);
+    $('q-verdict').textContent = right ? 'Acertou!' : `Errou. A certa é a ${LETTERS[attempt.orders[attempt.index].indexOf(question.answer)]}.`;
+    $('q-why').textContent = question.explanation ?? '';
+    $('q-why').hidden = !question.explanation;
+  }
   $('q-prev').disabled = attempt.index === 0;
-  $('q-next-label').textContent = attempt.index === total - 1 ? 'Entregar prova' : 'Próxima';
+  const last = attempt.index === total - 1;
+  $('q-next-label').textContent = last ? (attempt.kind === 'exam' ? 'Entregar prova' : 'Ver resultado') : 'Próxima';
+  document.querySelector('.grid-box').hidden = attempt.kind === 'study';
+  $('submit').textContent = attempt.kind === 'exam' ? 'Entregar prova agora' : 'Encerrar e ver resultado';
   $('q-grid').replaceChildren(...attempt.ids.map((_, index) => {
     const cell = document.createElement('button');
     cell.type = 'button';
@@ -174,13 +213,18 @@ function submit() {
   attempt = finish(attempt, Date.now());
   const result = score(attempt, bank);
   save(KEYS.missed, updateMissed(load(KEYS.missed, []), attempt, bank));
-  save(KEYS.history, [{ at: attempt.finishedAt, kind: attempt.kind, correct: result.correct, total: result.total, passed: result.passed }, ...load(KEYS.history, [])].slice(0, 30));
+  save(KEYS.seen, updateSeen(load(KEYS.seen, []), attempt, bank));
+  const topic = attempt.kind === 'study' ? byId.get(attempt.ids[0]).topic : undefined;
+  save(KEYS.history, [{ at: attempt.finishedAt, kind: attempt.kind, topic, correct: result.correct, total: result.total, passed: result.passed }, ...load(KEYS.history, [])].slice(0, 30));
   persistAttempt();
   renderResult();
 }
 
 function askSubmit() {
   const pending = unanswered(attempt);
+  const isExam = attempt.kind === 'exam';
+  $('confirm-title').textContent = isExam ? 'Entregar a prova?' : 'Encerrar a rodada?';
+  $('confirm-ok').textContent = isExam ? 'Entregar' : 'Encerrar';
   $('confirm-text').textContent = pending
     ? `Você ainda tem ${pending} ${pending === 1 ? 'questão' : 'questões'} sem resposta. Questão em branco conta como erro.`
     : 'Você respondeu todas. Depois de entregar não dá para mudar as respostas.';
@@ -192,6 +236,9 @@ function renderResult() {
   const isExam = attempt.kind === 'exam';
   $('verdict').classList.toggle('pass', result.passed);
   $('verdict').classList.toggle('fail', !result.passed);
+  const studyTopic = attempt.kind === 'study' ? byId.get(attempt.ids[0]).topic : null;
+  $('again').textContent = studyTopic ? `Mais ${STUDY_SIZE} de ${TOPICS[studyTopic].toLowerCase()}` : 'Fazer outra prova';
+  $('again').dataset.topic = studyTopic ?? '';
   $('verdict-label').textContent = isExam ? (result.passed ? 'Aprovada' : 'Reprovada') : (result.passed ? 'Mandou bem' : 'Ainda não');
   $('verdict-correct').textContent = String(result.correct);
   $('verdict-total').textContent = ` de ${result.total}`;
@@ -228,7 +275,8 @@ function renderResult() {
   show('result');
 }
 
-$('start').addEventListener('click', () => startAttempt(drawExam(bank), 'exam'));
+const newExam = () => startAttempt(drawExam(bank, Math.random, load(KEYS.seen, [])), 'exam');
+$('start').addEventListener('click', newExam);
 $('resume').addEventListener('click', openExam);
 $('review').addEventListener('click', () => {
   const missed = load(KEYS.missed, []).filter(id => byId.has(id));
@@ -236,14 +284,18 @@ $('review').addEventListener('click', () => {
 });
 $('q-prev').addEventListener('click', () => { attempt = goTo(attempt, attempt.index - 1); persistAttempt(); renderQuestion(); });
 $('q-next').addEventListener('click', () => {
-  if (attempt.index === attempt.ids.length - 1) return askSubmit();
+  if (attempt.index === attempt.ids.length - 1) return attempt.kind === 'study' && !unanswered(attempt) ? submit() : askSubmit();
   attempt = goTo(attempt, attempt.index + 1);
   persistAttempt();
   renderQuestion();
 });
 $('submit').addEventListener('click', askSubmit);
 $('confirm').addEventListener('close', () => { if ($('confirm').returnValue === 'ok' && attempt && !attempt.finishedAt) submit(); });
-$('again').addEventListener('click', () => startAttempt(drawExam(bank), 'exam'));
+$('again').addEventListener('click', event => {
+  const { topic } = event.currentTarget.dataset;
+  if (topic) startAttempt(drawStudy(bank, topic, STUDY_SIZE, Math.random, load(KEYS.seen, [])), 'study');
+  else newExam();
+});
 $('retry-wrong').addEventListener('click', () => startAttempt(score(attempt, bank).wrong, 'review'));
 $('home-link').addEventListener('click', renderHome);
 $('reload').addEventListener('click', () => window.location.reload());
