@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#182b36">
+  <meta name="description" content="Simulado da prova teórica do Detran: 30 questões, cronômetro e correção no final.">
+  <title>Simulado · Autoescola</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./simulado.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="./simulado.html" aria-label="Simulado, início"><img src="./favicon.svg" alt="" width="36" height="36"><span>simulado</span></a>
+      <nav class="app-nav" aria-label="Seções"><a href="./">Placas</a><a href="./simulado.html" aria-current="page">Simulado</a></nav>
+    </header>
+    <main>
+      <section id="home" hidden>
+        <h1>Prova teórica</h1>
+        <p class="lede" id="exam-rules"></p>
+        <button id="start" class="primary" type="button">Começar prova<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+        <button id="resume" class="secondary" type="button" hidden>Continuar prova em andamento</button>
+        <button id="review" class="secondary" type="button" hidden></button>
+        <p class="bank-size" id="bank-size"></p>
+        <div id="history" class="history" hidden><h2>Últimas provas</h2><ol id="history-list"></ol></div>
+      </section>
+
+      <section id="exam" hidden>
+        <div class="exam-bar">
+          <span id="q-position">Questão 1 de 30</span>
+          <span id="timer" class="timer" role="timer" aria-live="off"></span>
+        </div>
+        <progress id="q-progress" max="30" value="0" aria-label="Questões respondidas"></progress>
+        <article class="question-card">
+          <div class="card-topline"><span id="q-topic"></span><span id="q-answered" class="answered-count"></span></div>
+          <div id="q-image" class="question-image" hidden></div>
+          <p id="q-text" class="question-text"></p>
+          <div id="q-options" class="options" role="radiogroup" aria-labelledby="q-text"></div>
+        </article>
+        <div class="study-actions">
+          <button id="q-prev" class="previous" type="button" aria-label="Questão anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+          <button id="q-next" class="primary" type="button"><span id="q-next-label">Próxima</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <details class="grid-box">
+          <summary>Ver todas as questões</summary>
+          <div id="q-grid" class="q-grid"></div>
+        </details>
+        <button id="submit" class="text-button submit-link" type="button">Entregar prova agora</button>
+      </section>
+
+      <section id="result" hidden>
+        <div id="verdict" class="verdict">
+          <p class="verdict-label" id="verdict-label"></p>
+          <p class="verdict-score"><strong id="verdict-correct"></strong><span id="verdict-total"></span></p>
+          <p class="verdict-detail" id="verdict-detail"></p>
+        </div>
+        <ul id="topic-scores" class="topic-scores"></ul>
+        <div class="result-actions">
+          <button id="again" class="primary" type="button">Fazer outra prova</button>
+          <button id="retry-wrong" class="secondary" type="button" hidden>Refazer só as que errei</button>
+          <button id="home-link" class="text-button" type="button">Voltar ao início</button>
+        </div>
+        <h2 class="review-title" id="review-title"></h2>
+        <ol id="review-list" class="review-list"></ol>
+      </section>
+
+      <section id="loading" class="loading" role="status"><span class="loading-dot"></span>Preparando a prova…</section>
+      <section id="error" class="error" hidden><h2>Não deu para abrir as questões</h2><p>Confira a conexão e tente novamente.</p><button id="reload" class="primary" type="button">Tentar novamente</button></section>
+      <p id="storage-notice" class="storage-notice" hidden>O navegador não permitiu salvar a prova. Se fechar esta aba, ela se perde.</p>
+    </main>
+    <dialog id="confirm" class="confirm">
+      <form method="dialog">
+        <h2>Entregar a prova?</h2>
+        <p id="confirm-text"></p>
+        <div class="confirm-actions"><button value="cancel" class="secondary">Voltar à prova</button><button value="ok" class="primary">Entregar</button></div>
+      </form>
+    </dialog>
+    <footer><span class="footer-dash" aria-hidden="true"></span>A correção só aparece no final, como na prova.</footer>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <noscript>Ative o JavaScript no navegador para fazer o simulado.</noscript>
+  </div>
+</body>
+</html>

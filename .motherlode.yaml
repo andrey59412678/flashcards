@@ -1,7 +1,7 @@
 id: flashcards
 host_kind: pm2_process
-purpose: "Flashcards pessoais para autoescola: identificar placas e revelar o significado, com baralho embaralhado e interface mobile."
-tags: [personal, study, flashcards, autoescola, mobile]
+purpose: "Estudo pessoal para autoescola: flashcards de placas e simulado da prova teórica com o Banco Nacional de Questões oficial, interface mobile."
+tags: [personal, study, flashcards, simulado, autoescola, mobile]
 url: https://flashcards.apps.home.arpa
 ports: [47865]
 requires_https: true
@@ -17,6 +17,12 @@ runbook: |
   Imagens originais em public/assets; o SVG recorta apenas o simbolo em cada cartao.
   Progresso e ordem ficam no localStorage do navegador, chave flashcards.session.v1; nenhum banco no servidor.
   Novos cards aceitam prompt e answer em texto, image opcional; novos decks aparecem no seletor.
+  Simulado em simulado.html (logica pura em exam.js): 30 questoes sorteadas por modulo, 60 min, minimo 20 acertos
+  (Resolucao CONTRAN 1.020/2025), correcao so no fim, alternativas embaralhadas por tentativa e treino dos erros.
+  Banco em public/questions.json, gerado do Banco Nacional de Questoes v1.0 (Senatran, dez/2025) por
+  node scripts/import-bnq.mjs bnq.txt (texto de pdftotext -layout do PDF oficial); remove repetidas e questoes
+  de placa sem recorte no deck. Placas reaproveitam os recortes de decks.json pelo sourceCode.
+  Prova, erros e historico ficam no localStorage: simulado.attempt.v1, simulado.missed.v1, simulado.history.v1.
   Códigos sourceCode preservam a fonte e não são exibidos; última linha da imagem de advertência contém códigos repetidos.
 commands:
   health:
@@ -26,6 +32,7 @@ commands:
 agent_instructions: |
   Use npm. Valide npm test, npm run typecheck e npm run build antes do restart da propria tool.
   Preserve imagens e significado de cada card; nao gere simbolos de transito com IA.
+  Nao edite questions.json a mao nem gere questoes com IA; regenere pelo script a partir do banco oficial.
   Para acrescentar assunto, edite public/decks.json com um deck de id unico e cards com id, prompt, answer e image opcional.
   A resposta deve estar ausente da frente e voltar escondida ao avancar, voltar, embaralhar ou recarregar.
   Mantenha bind loopback e a rota SSO em /home/andrey/projects/personal-auth/config/apps.json.
