@@ -14,6 +14,7 @@ const mime: Record<string, string> = {
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.webmanifest': 'application/manifest+json',
+  '.txt': 'text/plain; charset=utf-8',
 };
 
 // Fail at startup if the initial deck cannot be loaded, rather than serving a broken app.

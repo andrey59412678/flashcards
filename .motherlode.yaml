@@ -20,8 +20,10 @@ runbook: |
   Simulado em simulado.html (logica pura em exam.js): 30 questoes sorteadas por modulo, 60 min, minimo 20 acertos
   (Resolucao CONTRAN 1.020/2025), correcao so no fim, alternativas embaralhadas por tentativa e treino dos erros.
   Banco em public/questions.json, gerado do Banco Nacional de Questoes v1.0 (Senatran, dez/2025) por
-  node scripts/import-bnq.mjs bnq.txt (texto de pdftotext -layout do PDF oficial); remove repetidas e questoes
-  de placa sem recorte no deck. Placas reaproveitam os recortes de decks.json pelo sourceCode.
+  node scripts/import-bnq.mjs bnq.txt (texto de pdftotext -layout do PDF oficial); remove questoes
+  identicas (texto+placa+resposta). Placas reaproveitam os recortes de decks.json pelo sourceCode; as que faltam
+  vem de SVGs do Wikimedia Commons em public/assets/signs (mapa SIGN_FILES no script, creditos em CREDITOS.txt).
+  O banco imprime R-35/R-44 para o que o manual CONTRAN chama R-36b/R-36c; o arquivo segue a resposta da questao.
   Prova, erros e historico ficam no localStorage: simulado.attempt.v1, simulado.missed.v1, simulado.history.v1.
   Códigos sourceCode preservam a fonte e não são exibidos; última linha da imagem de advertência contém códigos repetidos.
 commands:

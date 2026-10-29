@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import { TOPICS, validateBank, drawExam, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from '../public/exam.js';
 
 const real = validateBank(JSON.parse(await readFile(new URL('../public/questions.json', import.meta.url), 'utf8')));
@@ -21,8 +21,9 @@ test('the real bank is large, consistent and can fill every topic of an exam', (
   for (const [topic, count] of Object.entries(real.exam.distribution)) {
     assert.ok(real.questions.filter(q => q.topic === topic).length >= count * 2, topic);
   }
-  const texts = real.questions.map(q => q.text.trim().toLowerCase());
-  assert.equal(new Set(texts).size, texts.length, 'duplicated question text');
+  // Generic prompts ("O que essa placa indica?") legitimately repeat for different signs.
+  const keys = real.questions.map(q => [q.text.trim().toLowerCase(), q.sign ?? '', q.options[q.answer]].join('|'));
+  assert.equal(new Set(keys).size, keys.length, 'duplicated question');
   assert.equal(real.exam.questions, 30);
 });
 
@@ -120,6 +121,15 @@ test('the real bank keeps the right answer recoverable after its options are shu
   const withSign = real.questions.filter(q => q.image);
   assert.ok(withSign.length >= 100);
   for (const question of withSign) assert.match(question.sign, /^[AR]-/);
+});
+
+test('every sign image in the bank exists and no question asks about a sign it cannot show', async () => {
+  for (const src of new Set(real.questions.filter(q => q.image).map(q => q.image.src))) {
+    await access(new URL(`../public${src}`, import.meta.url));
+  }
+  for (const question of real.questions.filter(q => q.sign && !q.image)) {
+    assert.match(question.text, /placa (azul|marrom|verde|“)/i, question.id);
+  }
 });
 
 test('a saved attempt survives reload and corrupted storage is discarded', () => {

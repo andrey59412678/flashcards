@@ -6,10 +6,10 @@
   "passScore": 20,
   "minutes": 60,
   "distribution": {
-   "placas": 7,
+   "placas": 8,
    "escolhas": 4,
    "seguranca": 13,
-   "cuidar": 6
+   "cuidar": 5
   }
  },
  "questions": [
@@ -432,6 +432,32 @@
    "explanation": "Conforme estabelece o Art. 181, inciso XVII do CTB, estacionar em desacordo com as condições regulamentadas especificamente pela placa (no caso, \"Exceto Carga e Descarga\") é infração grave, sujeita a multa e remoção do veículo. A sinalização vertical restringe o uso da vaga apenas para a finalidade de carga e descarga, vedando o estacionamento de veículos de passeio ou a permanência por motivos que não o manuseio de mercadorias."
   },
   {
+   "id": "bnq-1-1-30",
+   "topic": "placas",
+   "level": "Difícil",
+   "text": "Um condutor vê a placa acima junto a outra com o texto “Exceto veículos de emergência”. O que isso significa?",
+   "options": [
+    "A restrição não se aplica a veículos de emergência, como ambulâncias, em serviço.",
+    "Todos os veículos estão liberados.",
+    "Somente ônibus podem passar.",
+    "É uma placa de advertência."
+   ],
+   "answer": 0,
+   "explanation": "Conforme as normas de Sinalização de Regulamentação do CONTRAN, a placa principal indica uma proibição. A placa adicional com a inscrição “Exceto veículos de emergência” atua como um painel complementar, que estabelece uma exceção à regra geral de proibição. Essa exceção é crucial para garantir que, em situações de urgência e emergência, o local esteja reservado e desimpedido para o acesso rápido e vital desses veículos.",
+   "sign": "R-14",
+   "image": {
+    "src": "/assets/signs/R-14.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-31",
    "topic": "placas",
    "level": "Difícil",
@@ -616,6 +642,32 @@
    }
   },
   {
+   "id": "bnq-1-1-39",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "O que indica a placa acima - Cruz de Santo André?",
+   "options": [
+    "O início de uma passagem de nível, onde a pista cruza com uma linha de trem.",
+    "Uma ponte sobre o rio.",
+    "Um cruzamento entre duas vias urbanas.",
+    "Um local de pedágio."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta que o motorista está prestes a cruzar trilhos ferroviários e deve redobrar a atenção.",
+   "sign": "A-41",
+   "image": {
+    "src": "/assets/signs/A-41a.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-40",
    "topic": "placas",
    "level": "Intermediário",
@@ -642,6 +694,32 @@
    }
   },
   {
+   "id": "bnq-1-1-41",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que pedestres e ciclistas devem compartilhar o mesmo espaço com atenção e respeito mútuo.",
+    "Que apenas ciclistas podem circular.",
+    "Que é proibido o trânsito de bicicletas.",
+    "Que pedestres devem usar bicicletas para passar."
+   ],
+   "answer": 0,
+   "explanation": "Essa placa indica convivência entre pedestres e ciclistas.",
+   "sign": "R-44",
+   "image": {
+    "src": "/assets/signs/R-36c.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-42",
    "topic": "placas",
    "level": "Intermediário",
@@ -664,6 +742,32 @@
      605,
      53,
      52
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-43",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Qual o significado da placa acima?",
+   "options": [
+    "Indica a presença ou o cruzamento de máquinas agrícolas na pista.",
+    "Indica que o condutor deve ultrapassar sempre que possível, mesmo sem visibilidade.",
+    "Indica que o condutor deve ignorar o aviso e seguir em alta velocidade.",
+    "Indica que o condutor deve ultrapassar pelo acostamento."
+   ],
+   "answer": 0,
+   "explanation": "Indica a presença ou o cruzamento de máquinas agrícolas na pista, comuns em zonas rurais, áreas de produção ou colheita, e alerta o condutor a reduzir a velocidade e manter distãncia segura.",
+   "sign": "A-31",
+   "image": {
+    "src": "/assets/signs/A-31.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -720,6 +824,21 @@
    }
   },
   {
+   "id": "bnq-1-1-46",
+   "topic": "placas",
+   "level": "Difícil",
+   "text": "Qual é a diferença entre a placa “Trânsito de pedestres” e a placa “Passagem sinalizada de pedestres”?",
+   "options": [
+    "A primeira indica o trânsito frequente de pedestres, enquanto a segunda indica a presença de faixa de pedestres sinalizada.",
+    "Ambas têm o mesmo significado.",
+    "A primeira é obrigatória e a segunda é proibitiva.",
+    "A placa indica travessia de ciclistas."
+   ],
+   "answer": 0,
+   "explanation": "A diferença está na representação da faixa no pictograma: a A-32b mostra o pedestre sobre a faixa sinalizada, enquanto a A-32a indica apenas a presença de pedestres circulando com frequência.",
+   "sign": "A-32a e A-32b"
+  },
+  {
    "id": "bnq-1-1-47",
    "topic": "placas",
    "level": "Difícil",
@@ -768,6 +887,32 @@
      362,
      53,
      53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-49",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Qual o principal objetivo da restrição indicada pela placa acima?",
+   "options": [
+    "Aumentar a segurança e preservar o fluxo adequado de veículos leves.",
+    "Reduzir a velocidade dos ônibus nas rodovias.",
+    "Induzir o uso de veículos particulares.",
+    "Garantir estacionamento público."
+   ],
+   "answer": 0,
+   "explanation": "A restrição evita congestionamentos e riscos estruturais.",
+   "sign": "R-38",
+   "image": {
+    "src": "/assets/signs/R-38.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -1016,6 +1161,32 @@
      40,
      80,
      71
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-60",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Ao dirigir em área rural e ver esta placa, o que o condutor deve prever?",
+   "options": [
+    "Possível entrada ou saída lenta de tratores.",
+    "Alta velocidade no trecho.",
+    "Presença de pedestres.",
+    "Obras em pista."
+   ],
+   "answer": 0,
+   "explanation": "A sinalização previne acidentes causados por diferença de velocidade entre veículos.",
+   "sign": "A-31",
+   "image": {
+    "src": "/assets/signs/A-31.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -1280,6 +1451,58 @@
    }
   },
   {
+   "id": "bnq-1-1-71",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Cláudia conduz um caminhão com carga de fardos empilhados e vê a placa acima antes de um viaduto. O que deve fazer?",
+   "options": [
+    "Verificar se a carga ultrapassa o limite e não passar se estiver acima.",
+    "Acelerar para passar rápido.",
+    "Passar pela calçada lateral.",
+    "Pedir ajuda a outro motorista."
+   ],
+   "answer": 0,
+   "explanation": "O condutor é responsável por garantir que o veículo e a carga estejam dentro dos limites de altura.",
+   "sign": "R-15",
+   "image": {
+    "src": "/assets/signs/R-15.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-72",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Cláudia dirige um automóvel e vê a placa acima em uma rua do centro da cidade. Ela pode seguir?",
+   "options": [
+    "Sim, pois a restrição é apenas para caminhões.",
+    "Não, a via é totalmente bloqueada.",
+    "Somente se for moradora.",
+    "Apenas se for horário noturno."
+   ],
+   "answer": 0,
+   "explanation": "A placa R-9 restringe apenas o trânsito de caminhões, veículos de passeio, ônibus e motos podem transitar.",
+   "sign": "R-9",
+   "image": {
+    "src": "/assets/signs/R-9.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-73",
    "topic": "placas",
    "level": "Fácil",
@@ -1302,6 +1525,32 @@
      362,
      53,
      53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-74",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Em quais locais a placa acima é mais utilizada?",
+   "options": [
+    "Em vias estreitas, áreas residenciais ou centros históricos.",
+    "Em rodovias de pista dupla.",
+    "Em estações rodoviárias.",
+    "Em faixas de ônibus."
+   ],
+   "answer": 0,
+   "explanation": "Essas áreas não comportam veículos grandes com segurança.",
+   "sign": "R-38",
+   "image": {
+    "src": "/assets/signs/R-38.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -1354,6 +1603,32 @@
      578,
      81,
      81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-77",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Essa placa é mais comum em quais locais?",
+   "options": [
+    "Calçadões, parques e ciclovias compartilhadas.",
+    "Rodovias de pista dupla.",
+    "Pontes exclusivas para caminhões.",
+    "Estacionamentos subterrâneos."
+   ],
+   "answer": 0,
+   "explanation": "É usada em locais urbanos voltados à mobilidade ativa.",
+   "sign": "R-44",
+   "image": {
+    "src": "/assets/signs/R-36c.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -1566,6 +1841,32 @@
    }
   },
   {
+   "id": "bnq-1-1-86",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que a placa acima indica?",
+   "options": [
+    "Que a via termina à frente e o motorista deve virar à direita ou à esquerda.",
+    "Que há uma lombada.",
+    "Que a pista é de mão dupla.",
+    "Que há um túnel."
+   ],
+   "answer": 0,
+   "explanation": "A placa adverte sobre o fim da via e a necessidade de conversão.",
+   "sign": "A-8",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     323,
+     253,
+     53,
+     53
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-87",
    "topic": "placas",
    "level": "Fácil",
@@ -1618,6 +1919,110 @@
    }
   },
   {
+   "id": "bnq-1-1-89",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa está avisando?",
+   "options": [
+    "Que existe um cruzamento à frente, onde podem vir carros dos dois lados.",
+    "Que a via é sem saída.",
+    "Que há uma lombada à frente.",
+    "Que é obrigatório virar à direita."
+   ],
+   "answer": 0,
+   "explanation": "Essa placa alerta para o encontro de duas vias, exigindo cuidado e redução de velocidade.",
+   "sign": "A-6",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     34,
+     252,
+     53,
+     54
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-90",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa está avisando?",
+   "options": [
+    "Que há duas entradas ou saídas próximas, uma à esquerda e outra à direita.",
+    "Que existe um semáforo à frente.",
+    "Que há uma lombada dupla.",
+    "Que é proibido virar à esquerda."
+   ],
+   "answer": 0,
+   "explanation": "A placa indica junções próximas em sentidos opostos, exigindo cuidado.",
+   "sign": "A-11a",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     226,
+     362,
+     53,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-91",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa está avisando?",
+   "options": [
+    "Que há uma parada obrigatória mais à frente.",
+    "Que o motorista deve seguir sem parar.",
+    "Que há um posto policial.",
+    "Que é o fim da pista."
+   ],
+   "answer": 0,
+   "explanation": "Essa placa prepara o condutor para parar completamente adiante.",
+   "sign": "A-15",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     323,
+     495,
+     53,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-92",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa está avisando?",
+   "options": [
+    "Que há uma via entrando pela esquerda.",
+    "Que a pista é de mão dupla.",
+    "Que existe uma lombada.",
+    "Que é proibido virar à esquerda."
+   ],
+   "answer": 0,
+   "explanation": "A placa indica que outra via se junta à estrada principal pela esquerda.",
+   "sign": "A-7a",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     130,
+     252,
+     53,
+     54
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-93",
    "topic": "placas",
    "level": "Fácil",
@@ -1644,6 +2049,58 @@
    }
   },
   {
+   "id": "bnq-1-1-94",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa indica ao condutor?",
+   "options": [
+    "Que há uma rotatória à frente.",
+    "Que a via é sem saída.",
+    "Que existe um retorno proibido.",
+    "Que há um quebra-molas."
+   ],
+   "answer": 0,
+   "explanation": "A placa adverte que o condutor se aproxima de uma interseção circular (rotatória).",
+   "sign": "A-12",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     419,
+     362,
+     53,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-95",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa indica ao condutor?",
+   "options": [
+    "Que há uma subida forte à frente.",
+    "Que a pista está em declive.",
+    "Que há uma lombada.",
+    "Que existe um pedágio logo adiante."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta sobre um trecho de aclive, ou seja, uma subida íngreme.",
+   "sign": "A-20b",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     419,
+     604,
+     53,
+     53
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-96",
    "topic": "placas",
    "level": "Fácil",
@@ -1666,6 +2123,58 @@
      252,
      53,
      54
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-97",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa indica?",
+   "options": [
+    "Que há um semáforo à frente.",
+    "Que a via é preferencial.",
+    "Que há uma lombada dupla.",
+    "Que é permitido ultrapassar."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta que o condutor se aproxima de um cruzamento com controle de semáforo.",
+   "sign": "A-14",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     226,
+     495,
+     54,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-98",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que essa placa indica?",
+   "options": [
+    "Que há uma lombada ou saliência na pista à frente.",
+    "Que há um buraco na via.",
+    "Que o trânsito está livre.",
+    "Que há pedágio."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta o motorista sobre a presença de uma elevação na pista.",
+   "sign": "A-18",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     130,
+     605,
+     53,
+     53
     ]
    }
   },
@@ -1722,6 +2231,578 @@
    }
   },
   {
+   "id": "bnq-1-1-101",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que esta placa indica?",
+   "options": [
+    "Que há circulação de tratores ou máquinas agrícolas na via.",
+    "Que há posto de combustível à frente.",
+    "Que é uma estrada urbana.",
+    "Que é proibido o trânsito de veículos grandes."
+   ],
+   "answer": 0,
+   "explanation": "O símbolo do trator indica possível presença de veículos agrícolas lentos.",
+   "sign": "A-31",
+   "image": {
+    "src": "/assets/signs/A-31.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-102",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que esta placa indica?",
+   "options": [
+    "Que há pedestres circulando ou atravessando a via.",
+    "Que há ciclistas à frente.",
+    "Que o trânsito é só de veículos pesados.",
+    "Que é uma estrada rural."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta o condutor sobre a presença frequente de pedestres na pista.",
+   "sign": "A-32a",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     419,
+     957,
+     53,
+     54
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-103",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Circulação exclusiva de bicicletas.",
+    "Proibição de circulação de bicicletas.",
+    "Faixa compartilhada entre carros e bicicletas.",
+    "Proibição de pedestres."
+   ],
+   "answer": 0,
+   "explanation": "A placa R-34 garante o uso exclusivo da via ou faixa aos ciclistas.",
+   "sign": "R-34",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     46,
+     578,
+     81,
+     81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-104",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "O condutor deve seguir em frente ou virar à direita.",
+    "O condutor deve virar à esquerda.",
+    "É proibido estacionar.",
+    "Deve realizar retorno."
+   ],
+   "answer": 0,
+   "explanation": "As duas setas indicam que apenas essas direções são permitidas.",
+   "sign": "R-25d",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     46,
+     928,
+     81,
+     81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-105",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Obrigação de seguir em frente.",
+    "Obrigação de virar à direita.",
+    "Proibição de seguir em frente.",
+    "Permissão para retorno."
+   ],
+   "answer": 0,
+   "explanation": "A seta única para cima representa movimento obrigatório no sentido indicado.",
+   "sign": "R-26",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     185,
+     928,
+     81,
+     81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-106",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a circulação é exclusiva para caminhões.",
+    "Que caminhões estão proibidos de circular.",
+    "Que ônibus e caminhões compartilham a faixa.",
+    "Que apenas veículos leves podem trafegar."
+   ],
+   "answer": 0,
+   "explanation": "A placa autoriza e delimita o espaço exclusivo para caminhões.",
+   "sign": "R-39",
+   "image": {
+    "src": "/assets/signs/R-39.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-107",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a via ou faixa é de circulação exclusiva de ônibus.",
+    "Que o estacionamento é permitido a ônibus.",
+    "Que é proibido o trânsito de ônibus.",
+    "Que é ponto de parada de ônibus."
+   ],
+   "answer": 0,
+   "explanation": "A placa R-32 indica exclusividade de circulação, não parada ou estacionamento.",
+   "sign": "R-32",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     46,
+     1104,
+     81,
+     82
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-108",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a via passa a ter duplo sentido de circulação.",
+    "Que há mão única à direita.",
+    "Que o sentido é obrigatório para frente.",
+    "Que a via é exclusiva para ônibus."
+   ],
+   "answer": 0,
+   "explanation": "As duas setas em direções opostas representam tráfego nos dois sentidos.",
+   "sign": "R-28",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     323,
+     578,
+     81,
+     81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-109",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a via passará a ter duas pistas separadas por canteiro central.",
+    "Que a via terá apenas uma faixa estreita.",
+    "Que há obras no local.",
+    "Que o trânsito será interrompido."
+   ],
+   "answer": 0,
+   "explanation": "A placa adverte o motorista sobre o início de uma pista com separação física entre os sentidos.",
+   "sign": "A-42a",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     322,
+     1066,
+     54,
+     54
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-110",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a via passará a ter separação física dividindo os fluxos de mesmo sentido de circulação.",
+    "Que há um desvio temporário.",
+    "Que a via termina adiante.",
+    "Que há um cruzamento sem sinalização."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta para o início de separação da pista, aumentando a segurança e a fluidez do tráfego.",
+   "sign": "A-42c",
+   "image": {
+    "src": "/assets/signs/A-42c.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-111",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a via termina adiante e não possui saída para outra rua.",
+    "Que há um cruzamento logo à frente.",
+    "Que o trânsito é de mão dupla.",
+    "Que existe um pedágio adiante."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta o motorista de que a via termina, deve ser observada antes de entrar na rua.",
+   "sign": "A-45",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     419,
+     495,
+     53,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-112",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que a via voltará a ter mão dupla, sem separação física entre os sentidos.",
+    "Que há início de túnel.",
+    "Que o trânsito será interrompido.",
+    "Que haverá pedágio adiante."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta para o término da divisão entre fluxos opostos, a atenção deve ser redobrada.",
+   "sign": "A-42b",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     419,
+     1067,
+     53,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-113",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que é proibida a circulação de motocicletas, motonetas e ciclomotores.",
+    "Que é obrigatória a circulação de motocicletas.",
+    "Que é permitida a circulação de bicicletas.",
+    "Que é exclusivo para caminhões."
+   ],
+   "answer": 0,
+   "explanation": "Essa placa restringe completamente a entrada e circulação de veículos motorizados de duas rodas.",
+   "sign": "R-37",
+   "image": {
+    "src": "/assets/signs/R-37.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-114",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que é proibida a circulação de ônibus.",
+    "Que a via é exclusiva para ônibus.",
+    "Que é obrigatório o transporte coletivo.",
+    "Que é permitido o trânsito apenas de caminhões."
+   ],
+   "answer": 0,
+   "explanation": "A placa restringe o tráfego de ônibus no trecho sinalizado.",
+   "sign": "R-38",
+   "image": {
+    "src": "/assets/signs/R-38.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-115",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que existe cruzamento com linha férrea à frente, protegido por cancelas.",
+    "Que há um pedágio na via.",
+    "Que a pista está bloqueada por obras.",
+    "Que o trânsito é exclusivo para trens."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta para cruzamento ferroviário onde há cancelas automáticas ou manuais.",
+   "sign": "A-40",
+   "image": {
+    "src": "/assets/signs/A-40.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-116",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que há um cruzamento entre a pista e uma linha de trem, sem cancelas de proteção.",
+    "Que a via está interditada para veículos.",
+    "Que há um posto policial à frente.",
+    "Que existe uma ponte com pedágio."
+   ],
+   "answer": 0,
+   "explanation": "O motorista deve reduzir a velocidade, parar e verificar se há trem se aproximando.",
+   "sign": "A-39",
+   "image": {
+    "src": "/assets/signs/A-39.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-117",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que há uma curva à direita à frente.",
+    "Que o retorno é obrigatório.",
+    "Que há uma interseção em “T”.",
+    "Que há uma curva acentuada à esquerda."
+   ],
+   "answer": 0,
+   "explanation": "A placa A-2b avisa o condutor sobre uma curva moderada à direita, exigindo atenção.",
+   "sign": "A-2b",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     323,
+     21,
+     53,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-118",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que há uma curva acentuada à esquerda à frente.",
+    "Que há uma conversão obrigatória à esquerda.",
+    "Que é permitido o retorno.",
+    "Que há uma interseção em “T”."
+   ],
+   "answer": 0,
+   "explanation": "A placa A-1a alerta sobre curva acentuada à esquerda e exige atenção redobrada.",
+   "sign": "A-1a",
+   "image": {
+    "src": "/assets/advertencia.png",
+    "width": 506,
+    "height": 1280,
+    "crop": [
+     34,
+     21,
+     52,
+     53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-119",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que o pedestre deve andar pela direita da via.",
+    "Que o pedestre pode atravessar livremente.",
+    "Que o pedestre deve permanecer parado.",
+    "Que o pedestre deve andar pela esquerda."
+   ],
+   "answer": 0,
+   "explanation": "A seta indica o lado da via destinado à circulação do pedestre.",
+   "sign": "R-31",
+   "image": {
+    "src": "/assets/signs/R-31.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-120",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que o pedestre deve andar pela esquerda da via.",
+    "Que o pedestre deve atravessar a rua.",
+    "Que o pedestre deve permanecer parado.",
+    "Que é proibido andar a pé."
+   ],
+   "answer": 0,
+   "explanation": "O pictograma indica a posição correta de circulação do pedestre no bordo da pista.",
+   "sign": "R-30",
+   "image": {
+    "src": "/assets/signs/R-30.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-121",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que ônibus e caminhões devem manter-se na faixa da direita.",
+    "Que todos os veículos devem estacionar.",
+    "Que veículos leves devem trafegar na direita.",
+    "Que o trânsito é exclusivo para caminhões."
+   ],
+   "answer": 0,
+   "explanation": "Obriga veículos pesados a circularem na faixa da direita, garantindo fluidez e segurança.",
+   "sign": "R-27",
+   "image": {
+    "src": "/assets/signs/R-27.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-122",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que indica a placa acima?",
+   "options": [
+    "Que os pedestres devem circular à esquerda e os ciclistas à direita.",
+    "Que a via é exclusiva para pedestres.",
+    "Que os ciclistas devem ocupar todo o espaço.",
+    "Que o trânsito é proibido para bicicletas."
+   ],
+   "answer": 0,
+   "explanation": "A linha vertical indica a separação obrigatória entre pedestres e ciclistas.",
+   "sign": "R-35",
+   "image": {
+    "src": "/assets/signs/R-36b.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-123",
    "topic": "placas",
    "level": "Fácil",
@@ -1774,6 +2855,32 @@
    }
   },
   {
+   "id": "bnq-1-1-125",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que o motorista deve fazer ao ver esta placa?",
+   "options": [
+    "Reduzir a velocidade e ficar atento a possíveis animais na via.",
+    "Usar buzina para afastar os animais.",
+    "Continuar na mesma velocidade.",
+    "Desviar para o acostamento."
+   ],
+   "answer": 0,
+   "explanation": "Animais podem cruzar de repente, a velocidade reduzida aumenta o tempo de reação.",
+   "sign": "A-35",
+   "image": {
+    "src": "/assets/signs/A-35.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-126",
    "topic": "placas",
    "level": "Fácil",
@@ -1796,6 +2903,58 @@
      578,
      81,
      81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-127",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que significa a placa acima?",
+   "options": [
+    "Que pode haver animais de grande porte atravessando a pista.",
+    "Que o local é exclusivo para pastagem.",
+    "Que a via é fechada para veículos.",
+    "Que o motorista pode acelerar."
+   ],
+   "answer": 0,
+   "explanation": "A placa alerta sobre a presença de bois, vacas ou outros animais na pista.",
+   "sign": "A-35",
+   "image": {
+    "src": "/assets/signs/A-35.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-128",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Onde é mais comum encontrar essa placa?",
+   "options": [
+    "Em estradas rurais e próximas a fazendas.",
+    "Em centros urbanos.",
+    "Em estacionamentos.",
+    "Em túneis e viadutos."
+   ],
+   "answer": 0,
+   "explanation": "É usada para alertar motoristas sobre o trânsito de máquinas agrícolas.",
+   "sign": "A-31",
+   "image": {
+    "src": "/assets/signs/A-31.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -1878,6 +3037,32 @@
    }
   },
   {
+   "id": "bnq-1-1-132",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Paulo conduz um caminhão-baú e encontra a placa acima próxima a uma ponte. Por que essa placa foi instalada ali?",
+   "options": [
+    "Para proteger a estrutura da ponte contra sobrepeso.",
+    "Para controlar o fluxo de veículos.",
+    "Para reduzir a velocidade.",
+    "Para indicar pedágio."
+   ],
+   "answer": 0,
+   "explanation": "O excesso de peso pode comprometer a estrutura de pontes e viadutos, gerando risco de colapso.",
+   "sign": "R-14",
+   "image": {
+    "src": "/assets/signs/R-14.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-133",
    "topic": "placas",
    "level": "Fácil",
@@ -1926,6 +3111,32 @@
      369,
      81,
      81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-135",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Paulo dirige um ônibus com altura de 3,5 metros e encontra a placa acima. Ele pode seguir?",
+   "options": [
+    "Sim, pois está abaixo do limite máximo permitido.",
+    "Não, porque o veículo é grande.",
+    "Apenas se houver espaço lateral.",
+    "Somente se não houver pedágio."
+   ],
+   "answer": 0,
+   "explanation": "A altura informada na placa é o limite máximo, veículos mais baixos podem transitar normalmente.",
+   "sign": "R-15",
+   "image": {
+    "src": "/assets/signs/R-15.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -2138,6 +3349,32 @@
    }
   },
   {
+   "id": "bnq-1-1-144",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual a atitude correta de um automóvel diante dessa placa?",
+   "options": [
+    "Não circular na faixa ou via sinalizada.",
+    "Manter-se à direita e reduzir a velocidade.",
+    "Seguir normalmente entre os caminhões.",
+    "Estacionar no local."
+   ],
+   "answer": 0,
+   "explanation": "A via é reservada apenas ao trânsito de caminhões.",
+   "sign": "R-39",
+   "image": {
+    "src": "/assets/signs/R-39.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-145",
    "topic": "placas",
    "level": "Fácil",
@@ -2164,6 +3401,58 @@
    }
   },
   {
+   "id": "bnq-1-1-146",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual deve ser a atitude do condutor de motocicleta ao encontrar essa placa?",
+   "options": [
+    "Não entrar ou circular no trecho indicado.",
+    "Seguir normalmente, mas com farol baixo.",
+    "Reduzir a velocidade e seguir.",
+    "Parar para embarque e desembarque."
+   ],
+   "answer": 0,
+   "explanation": "A entrada de motocicletas em área com essa sinalização constitui infração de trânsito.",
+   "sign": "R-37",
+   "image": {
+    "src": "/assets/signs/R-37.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-147",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual deve ser a atitude do condutor de ônibus ao encontrar essa placa?",
+   "options": [
+    "Não acessar a via sinalizada.",
+    "Seguir pela via, reduzindo a velocidade.",
+    "Utilizar a via apenas para embarque.",
+    "Parar para verificar o motivo da restrição."
+   ],
+   "answer": 0,
+   "explanation": "O condutor deve respeitar a proibição e buscar rota alternativa.",
+   "sign": "R-38",
+   "image": {
+    "src": "/assets/signs/R-38.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-148",
    "topic": "placas",
    "level": "Fácil",
@@ -2186,6 +3475,32 @@
      495,
      54,
      53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-149",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual deve ser a atitude do motorista ao ver esta placa?",
+   "options": [
+    "Reduzir a velocidade e redobrar a atenção.",
+    "Ultrapassar o trator rapidamente.",
+    "Acelerar para sair da área rural.",
+    "Ligar o farol alto."
+   ],
+   "answer": 0,
+   "explanation": "Máquinas agrícolas se movem devagar, exigindo paciência e cuidado dos demais condutores.",
+   "sign": "A-31",
+   "image": {
+    "src": "/assets/signs/A-31.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -2242,6 +3557,32 @@
    }
   },
   {
+   "id": "bnq-1-1-152",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual deve ser o comportamento do motociclista nesse tipo de travessia?",
+   "options": [
+    "Reduzir a velocidade e atravessar em linha reta e devagar, evitando derrapagens sobre os trilhos.",
+    "Atravessar em alta velocidade para não ser atingido.",
+    "Parar no meio dos trilhos para olhar melhor.",
+    "Fazer zigue-zague para manter equilíbrio."
+   ],
+   "answer": 0,
+   "explanation": "Trilhos podem ser escorregadios, a travessia deve ser feita com cuidado e estabilidade.",
+   "sign": "A-39",
+   "image": {
+    "src": "/assets/signs/A-39.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-153",
    "topic": "placas",
    "level": "Fácil",
@@ -2264,6 +3605,84 @@
      21,
      53,
      53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-154",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual é a função principal da placa acima?",
+   "options": [
+    "Advertir sobre o início de divisão física da pista.",
+    "Indicar redução de pista.",
+    "Avisar sobre pedágio.",
+    "Anunciar obra na pista."
+   ],
+   "answer": 0,
+   "explanation": "A sinalização prepara o condutor para a nova configuração da via.",
+   "sign": "A-42c",
+   "image": {
+    "src": "/assets/signs/A-42c.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-155",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual é a função principal da placa acima?",
+   "options": [
+    "Regular a velocidade máxima de segurança para o local.",
+    "Avisar sobre pedágios.",
+    "Indicar radar escondido.",
+    "Identificar a pista da direita."
+   ],
+   "answer": 0,
+   "explanation": "A placa R-19 busca compatibilizar segurança e fluidez do trânsito.",
+   "sign": "R-19",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     462,
+     369,
+     81,
+     81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-156",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual é a principal função da placa acima?",
+   "options": [
+    "Organizar o tráfego e reduzir conflitos entre veículos leves e pesados.",
+    "Alertar sobre lombadas.",
+    "Indicar ponto de parada de ônibus.",
+    "Proibir ultrapassagem."
+   ],
+   "answer": 0,
+   "explanation": "Mantendo veículos pesados à direita, evita lentidão nas faixas de ultrapassagem.",
+   "sign": "R-27",
+   "image": {
+    "src": "/assets/signs/R-27.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -2450,6 +3869,32 @@
    }
   },
   {
+   "id": "bnq-1-1-164",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Qual o principal objetivo da placa acima?",
+   "options": [
+    "Garantir segurança e organização entre pedestres e ciclistas.",
+    "Indicar um ponto de parada de ônibus.",
+    "Avisar sobre obras na pista.",
+    "Alertar para curva acentuada."
+   ],
+   "answer": 0,
+   "explanation": "A separação física e visual reduz riscos de atropelamento e colisão lateral.",
+   "sign": "R-35",
+   "image": {
+    "src": "/assets/signs/R-36b.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-165",
    "topic": "placas",
    "level": "Fácil",
@@ -2602,6 +4047,32 @@
      194,
      81,
      80
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-171",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Rogério conduz um caminhão com peso total de 12 toneladas e vê a placa acima. O que deve fazer?",
+   "options": [
+    "Não prosseguir e procurar rota alternativa.",
+    "Seguir com cuidado.",
+    "Reduzir a velocidade e passar assim mesmo.",
+    "Encostar e descarregar parte da carga."
+   ],
+   "answer": 0,
+   "explanation": "A placa R-14 indica o limite máximo de peso bruto total permitido no trecho. Veículos acima desse limite não podem transitar.",
+   "sign": "R-14",
+   "image": {
+    "src": "/assets/signs/R-14.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -2854,6 +4325,32 @@
    }
   },
   {
+   "id": "bnq-1-1-182",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Como a placa acima contribui para a segurança viária?",
+   "options": [
+    "Mantendo previsibilidade e separação de fluxos entre veículos leves e pesados.",
+    "Diminuindo a fiscalização eletrônica.",
+    "Reduzindo a necessidade de sinalização vertical.",
+    "Incentivando ultrapassagens em curva."
+   ],
+   "answer": 0,
+   "explanation": "Ordena o tráfego e reduz zonas de conflito em pistas de múltiplas faixas.",
+   "sign": "R-27",
+   "image": {
+    "src": "/assets/signs/R-27.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-183",
    "topic": "placas",
    "level": "Intermediário",
@@ -3050,6 +4547,32 @@
    }
   },
   {
+   "id": "bnq-1-1-191",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Marcos conduz um caminhão e encontra a placa acima acompanhada da inscrição “Das 7h às 20h”. O que isso significa?",
+   "options": [
+    "A proibição vale apenas dentro do horário indicado.",
+    "É proibido trafegar 24 horas.",
+    "A placa é apenas educativa.",
+    "Que ele pode travegar livremente."
+   ],
+   "answer": 0,
+   "explanation": "As placas auxiliares definem horários específicos de restrição de circulação.",
+   "sign": "R-9",
+   "image": {
+    "src": "/assets/signs/R-9.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-192",
    "topic": "placas",
    "level": "Intermediário",
@@ -3178,6 +4701,32 @@
      928,
      81,
      81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-198",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "O que o pedestre deve fazer ao ver essa placa acima?",
+   "options": [
+    "Caminhar pelo lado esquerdo da via compartilhada.",
+    "Andar livremente pela faixa de ciclista.",
+    "Atravessar no meio da pista.",
+    "Caminhar em qualquer sentido."
+   ],
+   "answer": 0,
+   "explanation": "A divisão da circulação facilita a previsibilidade de movimentos.",
+   "sign": "R-35",
+   "image": {
+    "src": "/assets/signs/R-36b.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -3364,6 +4913,58 @@
    }
   },
   {
+   "id": "bnq-1-1-206",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Por que é importante o uso da placa acima?",
+   "options": [
+    "Para orientar a convivência segura entre pedestres e ciclistas.",
+    "Para restringir o uso de bicicletas.",
+    "Para proibir o trânsito de pedestres.",
+    "Para aumentar a velocidade dos ciclistas."
+   ],
+   "answer": 0,
+   "explanation": "Ela visa reduzir conflitos e promover segurança no trânsito não motorizado.",
+   "sign": "R-44",
+   "image": {
+    "src": "/assets/signs/R-36c.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-207",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Por que é importante respeitar a placa acima em túneis e passagens subterrâneas?",
+   "options": [
+    "Porque o desrespeito pode causar colisão da carga contra o teto, colocando em risco todos os usuários.",
+    "Porque o ar é mais úmido nesses locais.",
+    "Porque há pedágio próximo.",
+    "Porque é área de fiscalização."
+   ],
+   "answer": 0,
+   "explanation": "O excesso de altura pode causar sinistros e danos estruturais, exigindo interdição da via.",
+   "sign": "R-15",
+   "image": {
+    "src": "/assets/signs/R-15.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
    "id": "bnq-1-1-208",
    "topic": "placas",
    "level": "Intermediário",
@@ -3464,6 +5065,58 @@
      21,
      53,
      53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-212",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Por que respeitar a placa acima é importante em rodovias com túneis e viadutos?",
+   "options": [
+    "Porque o desrespeito pode causar colisão lateral e danificar as estruturas.",
+    "Porque evita multas de excesso de velocidade.",
+    "Porque reduz o ruído urbano.",
+    "Porque facilita o estacionamento."
+   ],
+   "answer": 0,
+   "explanation": "Veículos muito largos podem atingir paredes, muretas e colunas de sustentação.",
+   "sign": "R-16",
+   "image": {
+    "src": "/assets/signs/R-16.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-213",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Quais veículos são abrangidos pela proibição da placa acima?",
+   "options": [
+    "Motocicletas, motonetas e ciclomotores.",
+    "Bicicletas e patinetes elétricos.",
+    "Automóveis e caminhões.",
+    "Tratores e máquinas agrícolas."
+   ],
+   "answer": 0,
+   "explanation": "A placa se aplica a todos os veículos motorizados de duas rodas, independentemente da cilindrada.",
+   "sign": "R-37",
+   "image": {
+    "src": "/assets/signs/R-37.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -3594,6 +5247,84 @@
      21,
      53,
      53
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-219",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Qual o objetivo principal da placa acima?",
+   "options": [
+    "Proteger ciclistas e garantir a convivência segura entre modais.",
+    "Facilitar o tráfego de automóveis.",
+    "Reservar estacionamento de motos.",
+    "Evitar o uso de bicicletas."
+   ],
+   "answer": 0,
+   "explanation": "Promove segurança e incentivo ao transporte não motorizado.",
+   "sign": "R-34",
+   "image": {
+    "src": "/assets/regulamentacao.png",
+    "width": 728,
+    "height": 1280,
+    "crop": [
+     46,
+     578,
+     81,
+     81
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-220",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Qual o risco de desrespeitar a placa acima?",
+   "options": [
+    "Ocorrer colisões com pedestres ou veículos em áreas não projetadas para motos.",
+    "Aumentar a fluidez do trânsito.",
+    "Reduzir o consumo de combustível.",
+    "Nenhum risco, apenas penalidade administrativa."
+   ],
+   "answer": 0,
+   "explanation": "Em vias estreitas e calçadões, motos representam alto risco de atropelamento.",
+   "sign": "R-37",
+   "image": {
+    "src": "/assets/signs/R-37.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
+  },
+  {
+   "id": "bnq-1-1-221",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Qual o risco de veículos leves usarem uma via sinalizada com a placa acima?",
+   "options": [
+    "Aumento da probabilidade de colisões com caminhões.",
+    "Redução de riscos.",
+    "Melhoria da fluidez geral.",
+    "Nenhum risco significativo."
+   ],
+   "answer": 0,
+   "explanation": "A diferença de tamanho e peso aumenta o risco de acidentes graves.",
+   "sign": "R-39",
+   "image": {
+    "src": "/assets/signs/R-39.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
     ]
    }
   },
@@ -4996,6 +6727,51 @@
    "explanation": "Placas verdes orientam sobre cidades, distâncias e direções."
   },
   {
+   "id": "bnq-1-1-315",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Em área urbana, uma placa azul com o símbolo de uma cruz vermelha indica:",
+   "options": [
+    "A presença de um serviço de saúde nas proximidades.",
+    "Que é proibido estacionar.",
+    "Que há escola por perto.",
+    "Um ponto turístico."
+   ],
+   "answer": 0,
+   "explanation": "Placas azuis identificam serviços públicos, como hospitais.",
+   "sign": "SAU-10"
+  },
+  {
+   "id": "bnq-1-1-316",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Uma placa marrom com o símbolo de uma cachoeira indica:",
+   "options": [
+    "Um atrativo turístico ou ponto de interesse.",
+    "Um risco de inundação.",
+    "A presença de obras na via.",
+    "Um serviço de emergência."
+   ],
+   "answer": 0,
+   "explanation": "Placas marrons têm função turística.",
+   "sign": "TNA-05"
+  },
+  {
+   "id": "bnq-1-1-317",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que o motorista entende ao ver uma placa azul com o símbolo de um telefone?",
+   "options": [
+    "Há telefone público disponível.",
+    "É obrigatório ligar para o Detran.",
+    "A via tem pedágio.",
+    "Há um posto de gasolina."
+   ],
+   "answer": 0,
+   "explanation": "Placas azuis informam serviços úteis.",
+   "sign": "SAU-06"
+  },
+  {
    "id": "bnq-1-1-318",
    "topic": "placas",
    "level": "Fácil",
@@ -5024,6 +6800,21 @@
    "explanation": "Essa placa antecipa a aproximação de uma saída."
   },
   {
+   "id": "bnq-1-1-320",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Uma placa azul com o símbolo de uma colher e garfo indica:",
+   "options": [
+    "Restaurante ou lanchonete próxima.",
+    "Proibição de parar.",
+    "Área de carga e descarga.",
+    "Serviço mecânico."
+   ],
+   "answer": 0,
+   "explanation": "Símbolo de alimentação disponível.",
+   "sign": "SAU-12"
+  },
+  {
    "id": "bnq-1-1-321",
    "topic": "placas",
    "level": "Fácil",
@@ -5036,6 +6827,21 @@
    ],
    "answer": 0,
    "explanation": "Placas de regulamentação são obrigatórias; as de indicação orientam."
+  },
+  {
+   "id": "bnq-1-1-322",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "O que o motorista entende ao ver uma placa azul com o símbolo de uma cama?",
+   "options": [
+    "Indica um local com hospedagem disponível.",
+    "Indica área de descanso obrigatória.",
+    "Indica hospital.",
+    "Indica ponto de ônibus."
+   ],
+   "answer": 0,
+   "explanation": "Símbolo de hospedagem, útil em longas viagens.",
+   "sign": "SAU-13"
   },
   {
    "id": "bnq-1-1-323",
@@ -5080,6 +6886,21 @@
    "explanation": "A leitura rápida evita decisões de última hora."
   },
   {
+   "id": "bnq-1-1-326",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Uma placa azul com símbolo de uma cruz vermelha representa:",
+   "options": [
+    "Serviço médico ou pronto-atendimento.",
+    "Local religioso.",
+    "Cemitério.",
+    "Proibição de parar."
+   ],
+   "answer": 0,
+   "explanation": "A cruz vermelha simboliza atendimento médico.",
+   "sign": "SAU-10"
+  },
+  {
    "id": "bnq-1-1-327",
    "topic": "placas",
    "level": "Intermediário",
@@ -5092,6 +6913,21 @@
    ],
    "answer": 0,
    "explanation": "Indica rotas alternativas durante bloqueios."
+  },
+  {
+   "id": "bnq-1-1-328",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Uma placa azul com o símbolo de uma bomba de combustível informa:",
+   "options": [
+    "A presença de posto de abastecimento adiante.",
+    "Que é proibido abastecer.",
+    "Que há mecânica de emergência.",
+    "Que a via termina."
+   ],
+   "answer": 0,
+   "explanation": "Informa posto de combustível próximo.",
+   "sign": "SAU-09"
   },
   {
    "id": "bnq-1-1-329",
@@ -5122,6 +6958,36 @@
    "explanation": "Orientam o condutor e reduzem manobras bruscas."
   },
   {
+   "id": "bnq-1-1-331",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Em uma viagem, João vê uma placa azul com símbolo de um telefone. O que essa placa comunica?",
+   "options": [
+    "Existe telefone público disponível adiante",
+    "Existe radar próximo",
+    "A área é escolar",
+    "É proibido parar"
+   ],
+   "answer": 0,
+   "explanation": "Placas azuis informam serviços ao usuário.",
+   "sign": "SAU-06"
+  },
+  {
+   "id": "bnq-1-1-332",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Ao observar uma placa azul com colher e garfo, o que Maria deve entender?",
+   "options": [
+    "Há restaurante ou alimentação próxima",
+    "É área de risco animal",
+    "A via está escorregadia",
+    "Há pedágio à frente"
+   ],
+   "answer": 0,
+   "explanation": "Símbolo de alimentação é padrão nas placas azuis.",
+   "sign": "SAU-12"
+  },
+  {
    "id": "bnq-1-1-333",
    "topic": "placas",
    "level": "Fácil",
@@ -5134,6 +7000,21 @@
    ],
    "answer": 0,
    "explanation": "Placas verdes orientam rotas e distâncias."
+  },
+  {
+   "id": "bnq-1-1-334",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Laura vê uma placa azul com o símbolo de uma bomba de combuistível. Qual a mensagem?",
+   "options": [
+    "Posto de combustível à frente",
+    "Sentido obrigatório à direita",
+    "Perigo de pista irregular",
+    "Ciclovia ao lado"
+   ],
+   "answer": 0,
+   "explanation": "Placas de serviços mostram abastecimento disponível.",
+   "sign": "SAU-09"
   },
   {
    "id": "bnq-1-1-335",
@@ -5177,6 +7058,21 @@
    "answer": 0,
    "explanation": "Placas azuis informam serviços auxiliares.",
    "sign": "SAU-13"
+  },
+  {
+   "id": "bnq-1-1-338",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Sara encontra placa azul com símbolo de ônibus. O que isso significa?",
+   "options": [
+    "Área com rodoviária ou ponto de ônibus",
+    "Via exclusiva de carga",
+    "Estrada perigosa",
+    "Radar móvel adiante"
+   ],
+   "answer": 0,
+   "explanation": "Placa azul informa serviços públicos.",
+   "sign": "SAU-26"
   },
   {
    "id": "bnq-1-1-339",
@@ -5237,6 +7133,21 @@
    "explanation": "Placas azuis podem indicar postos de fiscalização."
   },
   {
+   "id": "bnq-1-1-343",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Júlia encontra placa verde com símbolo de aeroporto. Isso representa:",
+   "options": [
+    "Acesso ao aeroporto próximo",
+    "Risco de aeronave baixa",
+    "Proibição de parada",
+    "Advertência de aclive"
+   ],
+   "answer": 0,
+   "explanation": "Placas verdes orientam destinos de grande importância.",
+   "sign": "SAU-21"
+  },
+  {
    "id": "bnq-1-1-344",
    "topic": "placas",
    "level": "Intermediário",
@@ -5250,6 +7161,21 @@
    "answer": 0,
    "explanation": "A placa indica acessibilidade.",
    "sign": "DEF-01"
+  },
+  {
+   "id": "bnq-1-1-345",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Helena observa placa azul com símbolo de pedágio. O que ela comunica?",
+   "options": [
+    "Existência de praça de pedágio adiante",
+    "Cruzamento perigoso",
+    "Ponte estreita",
+    "Área escolar"
+   ],
+   "answer": 0,
+   "explanation": "Serviços de fiscalização são indicados em azul.",
+   "sign": "SAU-18"
   },
   {
    "id": "bnq-1-1-346",
@@ -5379,6 +7305,51 @@
    "explanation": "São placas educativas de conscientização."
   },
   {
+   "id": "bnq-1-1-355",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Uma placa azul com símbolo de ônibus indica:",
+   "options": [
+    "Terminal ou ponto de transporte",
+    "Proibição de ônibus",
+    "Área perigosa",
+    "Trânsito lento"
+   ],
+   "answer": 0,
+   "explanation": "Azul também marca serviços ao usuário.",
+   "sign": "SAU-26"
+  },
+  {
+   "id": "bnq-1-1-356",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Uma placa azul com símbolo de pneu indica:",
+   "options": [
+    "Borracharia",
+    "Restrição de tráfego",
+    "Radar",
+    "Curva perigosa"
+   ],
+   "answer": 0,
+   "explanation": "Serviços ao motorista são mostrados em azul.",
+   "sign": "SAU-08"
+  },
+  {
+   "id": "bnq-1-1-357",
+   "topic": "placas",
+   "level": "Fácil",
+   "text": "Uma placa marrom com símbolo de árvores indica:",
+   "options": [
+    "Parque urbano",
+    "Área escolar",
+    "Perigo",
+    "Desvio"
+   ],
+   "answer": 0,
+   "explanation": "Marrons indicam turismo e natureza.",
+   "sign": "TAR-03"
+  },
+  {
    "id": "bnq-1-1-358",
    "topic": "placas",
    "level": "Intermediário",
@@ -5405,6 +7376,21 @@
    ],
    "answer": 0,
    "explanation": "Cada cor possui finalidade própria."
+  },
+  {
+   "id": "bnq-1-1-360",
+   "topic": "placas",
+   "level": "Intermediário",
+   "text": "Uma placa azul com símbolo de cruz vermelha indica:",
+   "options": [
+    "Pronto Socorro",
+    "Igreja",
+    "Radares",
+    "Curva perigosa"
+   ],
+   "answer": 0,
+   "explanation": "Serviços médicos são indicados em azul.",
+   "sign": "SAU-10"
   },
   {
    "id": "bnq-1-1-361",
@@ -7003,6 +8989,20 @@
    ],
    "answer": 0,
    "explanation": "Ciclistas são frágeis e exigem cuidado."
+  },
+  {
+   "id": "bnq-1-2-105",
+   "topic": "escolhas",
+   "level": "Fácil",
+   "text": "Por que não se deve parar sobre a faixa de pedestres?",
+   "options": [
+    "Porque impede a travessia segura",
+    "Porque atrapalha outros carros",
+    "Porque causa ruído",
+    "Porque aumenta consumo"
+   ],
+   "answer": 0,
+   "explanation": "A faixa é espaço exclusivo do pedestre."
   },
   {
    "id": "bnq-1-2-106",
@@ -13249,6 +15249,20 @@
    "explanation": "Conforme estabelece o Art. 70 do CTB, os pedestres que estiverem atravessando a via sobre as faixas a eles destinadas têm prioridade de passagem sobre os veículos. Além disso, o Art. 214, inciso IV, define como infração gravíssima deixar de dar preferência a pedestre que já tenha iniciado a travessia. A conduta segura exige a parada total, pois a preferência do pedestre é absoluta, independentemente da cor do semáforo."
   },
   {
+   "id": "bnq-1-3-382",
+   "topic": "seguranca",
+   "level": "Intermediário",
+   "text": "O motorista abre a porta do carro sem olhar e derruba um ciclista.",
+   "options": [
+    "Foi falta de atenção e respeito com usuário vulnerável.",
+    "O ciclista devia desviar.",
+    "Foi culpa do ciclista por andar muito perto.",
+    "É normal, acontece sempre."
+   ],
+   "answer": 0,
+   "explanation": "Conforme estabelece o Art. 49, Parágrafo único do CTB, os passageiros e condutores não deverão abrir a porta, nem deixá-la aberta, sem antes se certificarem de que isso não constitui perigo para eles e para outros usuários da via."
+  },
+  {
    "id": "bnq-1-3-383",
    "topic": "seguranca",
    "level": "Intermediário",
@@ -13331,6 +15345,20 @@
    ],
    "answer": 0,
    "explanation": "Conforme estabelece o art. 26 do CTB, os usuários da via devem abster-se de todo ato que possa constituir perigo e devem atuar para a segurança de todos. O respeito às leis (e à sinalização) transcende a obrigação legal; é um ato de cidadania, pois garante a preservação da vida (principal valor do trânsito), o direito à integridade física de terceiros e a fluidez do espaço público. Agir com civilidade e cumprir as regras demonstra a consciência do motorista sobre sua responsabilidade compartilhada na construção de um ambiente social seguro e justo."
+  },
+  {
+   "id": "bnq-1-3-392",
+   "topic": "seguranca",
+   "level": "Intermediário",
+   "text": "Qual é a relação entre normas do CTB e preservação da vida?",
+   "options": [
+    "As regras organizam a convivência e reduzem riscos e conflitos.",
+    "As regras existem só para multar.",
+    "As regras atrapalham o trânsito.",
+    "As regras servem apenas em rodovia."
+   ],
+   "answer": 0,
+   "explanation": "O CTB tem como princípio a preservação da vida, conforme o art. 1º, § 5º, ao estabelecer normas que transformam esse direito em ações concretas no trânsito, fixando deveres, limites e responsabilidades para garantir a segurança e evitar sinistros."
   },
   {
    "id": "bnq-1-3-393",
@@ -13933,6 +15961,32 @@
    ],
    "answer": 0,
    "explanation": "A marcha reduzida ajuda o freio-motor a controlar o carro."
+  },
+  {
+   "id": "bnq-1-3-438",
+   "topic": "seguranca",
+   "level": "Fácil",
+   "text": "Quando o motorista se aproxima de um local com essa sinalização, deve:",
+   "options": [
+    "Reduzir a velocidade e parar se a cancela estiver baixada ou descendo.",
+    "Acelerar para cruzar antes que a barreira feche.",
+    "Buzinar para o guarda liberar a passagem.",
+    "Parar sobre os trilhos."
+   ],
+   "answer": 0,
+   "explanation": "A cancela indica a aproximação de trem, o motorista deve esperar até a liberação completa.",
+   "sign": "A-40",
+   "image": {
+    "src": "/assets/signs/A-40.svg",
+    "width": 100,
+    "height": 100,
+    "crop": [
+     0,
+     0,
+     100,
+     100
+    ]
+   }
   },
   {
    "id": "bnq-1-3-439",

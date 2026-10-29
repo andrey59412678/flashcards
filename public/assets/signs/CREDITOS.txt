@@ -1,0 +1,39 @@
+Placas de trânsito em SVG usadas no simulado (Wikimedia Commons).
+Os sinais são do Anexo II do CTB / Manual Brasileiro de Sinalização de Trânsito (CONTRAN).
+
+A-31.svg — https://commons.wikimedia.org/wiki/File:Brasil_A-31.svg
+  Autor: Departamento Nacional de Infraestrutura de Transportes · Licença: Public domain
+A-35.svg — https://commons.wikimedia.org/wiki/File:Brasil_A-35.svg
+  Autor: Departamento Nacional de Infraestrutura de Transportes · Licença: Public domain
+A-39.svg — https://commons.wikimedia.org/wiki/File:Brasil_A-39.svg
+  Autor: Departamento Nacional de Infraestrutura de Transportes · Licença: Public domain
+A-40.svg — https://commons.wikimedia.org/wiki/File:Brasil_A-40.svg
+  Autor: Departamento Nacional de Infraestrutura de Transportes · Licença: Public domain
+A-41a.svg — https://commons.wikimedia.org/wiki/File:Brasil_A-41a.svg
+  Autor: Departamento Nacional de Infraestrutura de Transportes · Licença: Public domain
+A-42c.svg — https://commons.wikimedia.org/wiki/File:Brasil_A-42c.svg
+  Autor: Departamento Nacional de Infraestrutura de Transportes · Licença: Public domain
+R-9.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-9.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-14.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-14.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-15.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-15.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-16.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-16.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-27.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-27.svg
+  Autor: Departamento Nacional de Trânsito · Licença: Public domain
+R-30.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-30.svg
+  Autor: Departamento Nacional de Trânsito · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-31.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-31.svg
+  Autor: Departamento Nacional de Trânsito · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-36b.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-36b.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-36c.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-36c.svg
+  Autor: มองโกเลีย๔๔ · Licença: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)
+R-37.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-37.svg
+  Autor: Departamento Nacional de Trânsito · Licença: Public domain
+R-38.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-38.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
+R-39.svg — https://commons.wikimedia.org/wiki/File:Brasil_R-39.svg
+  Autor: Amateria1121 · Licença: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)
