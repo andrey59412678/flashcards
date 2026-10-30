@@ -15,7 +15,7 @@
   <div class="app-shell">
     <header class="app-header">
       <a class="brand" href="./simulado.html" aria-label="Simulado, início"><img src="./favicon.svg" alt="" width="36" height="36"><span>simulado</span></a>
-      <nav class="app-nav" aria-label="Seções"><a href="./">Placas</a><a href="./simulado.html" aria-current="page">Simulado</a><a href="./linhas.html">Linhas</a></nav>
+      <nav class="app-nav" aria-label="Seções"><a href="./">Placas</a><a href="./simulado.html" aria-current="page">Simulado</a><a href="./treino.html">Treinos</a></nav>
     </header>
     <main>
       <section id="home" hidden>
@@ -23,8 +23,22 @@
         <p class="lede" id="exam-rules"></p>
         <button id="start" class="primary" type="button">Começar prova<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
         <button id="resume" class="secondary" type="button" hidden>Continuar de onde parei</button>
-        <button id="review" class="secondary" type="button" hidden></button>
         <p class="bank-size" id="bank-size"></p>
+        <section id="review-box" class="review-box" aria-labelledby="review-box-title" hidden>
+          <h2 id="review-box-title">Revisão dos erros</h2>
+          <p id="review-note" class="study-hint"></p>
+          <button id="review" class="primary" type="button" hidden></button>
+          <button id="review-all" class="text-button" type="button" hidden></button>
+          <p class="study-hint review-rule">Cada questão errada volta no dia seguinte. Acertou no dia certo, ela volta em 3 dias, depois em 7, e então sai da lista. Errou de novo, recomeça.</p>
+        </section>
+        <section id="stats" class="stats-box" aria-labelledby="stats-title" hidden>
+          <h2 id="stats-title">Seu desempenho</h2>
+          <p id="stats-ready" class="stats-ready"></p>
+          <p id="stats-trend" class="study-hint" hidden></p>
+          <ul id="stats-topics" class="topic-scores"></ul>
+          <p id="stats-hint" class="study-hint">Acerto nas últimas questões de cada tema. Com pelo menos 8 respostas num tema, aparece o seu ponto fraco.</p>
+          <button id="stats-weak" class="secondary" type="button" hidden></button>
+        </section>
         <section class="study-box" aria-labelledby="study-title">
           <h2 id="study-title">Estudar por tema</h2>
           <p class="study-hint">Rodadas de 10 questões. A resposta certa e o comentário aparecem logo depois de cada uma.</p>
@@ -82,6 +96,7 @@
           <p class="verdict-detail" id="verdict-detail"></p>
         </div>
         <ul id="topic-scores" class="topic-scores"></ul>
+        <p id="srs-result" class="srs-result" hidden></p>
         <div class="result-actions">
           <button id="again" class="primary" type="button">Fazer outra prova</button>
           <button id="retry-wrong" class="secondary" type="button" hidden>Refazer só as que errei</button>

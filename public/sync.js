@@ -14,6 +14,7 @@ export const KEYS = {
   missed: 'simulado.missed.v1',
   missedLog: 'simulado.missed-log.v1',
   linhasBest: 'linhas.best.v1',
+  bests: 'treino.best.v1',
 };
 // Crockford base32: no i, l, o or u, so a code copied by hand cannot be misread.
 const ALPHABET = '0123456789abcdefghjkmnpqrstvwxyz';
@@ -46,7 +47,7 @@ export function localSnapshot() {
   const log = { ...read(KEYS.missedLog, {}) };
   // Misses saved before the log existed are kept, dated 0 so any real change elsewhere wins.
   for (const id of read(KEYS.missed, [])) if (typeof id === 'string' && !log[id]) log[id] = [0, true];
-  return normalize({ history: read(KEYS.history, []), seen: read(KEYS.seen, []), missed: log, linhasBest: read(KEYS.linhasBest, null) });
+  return normalize({ history: read(KEYS.history, []), seen: read(KEYS.seen, []), missed: log, linhasBest: read(KEYS.linhasBest, null), bests: read(KEYS.bests, {}) });
 }
 
 function writeLocal(snapshot) {
@@ -55,6 +56,7 @@ function writeLocal(snapshot) {
   write(KEYS.missedLog, snapshot.missed);
   write(KEYS.missed, missedIds(snapshot.missed));
   if (snapshot.linhasBest) write(KEYS.linhasBest, snapshot.linhasBest);
+  write(KEYS.bests, snapshot.bests);
 }
 
 export function hasLocalProgress() {

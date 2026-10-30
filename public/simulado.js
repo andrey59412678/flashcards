@@ -1,13 +1,16 @@
-import { TOPICS, validateBank, drawExam, drawStudy, drawSet, coverage, updateSeen, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed, historyEntry, reviewFromHistory, reviewPositions } from './exam.js';
+import { TOPICS, shuffled, validateBank, drawExam, drawStudy, drawSet, coverage, updateSeen, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, historyEntry, reviewFromHistory, reviewPositions } from './exam.js';
 
 import { BANK_SCENES, roadSvg, explain } from './road.js';
 import { syncNow, newCode, parseCode, formatCode, currentCode, status as syncStatus, disconnect, hasLocalProgress } from './sync.js';
-import { recordMissed } from './merge.js';
+import { missedIds } from './merge.js';
+import { recordRound, dueIds, waiting, roundChanges, REVIEW_SIZE } from './srs.js';
+import { topicStats, weakest, examTrend, readiness } from './stats.js';
 
 const $ = id => document.getElementById(id);
 const KEYS = { attempt: 'simulado.attempt.v1', missed: 'simulado.missed.v1', missedLog: 'simulado.missed-log.v1', history: 'simulado.history.v1', seen: 'simulado.seen.v1' };
 const STUDY_SIZE = 10;
-const KIND_NAMES = { exam: 'Prova', review: 'Treino de erros', study: 'Estudo' };
+const ALL_SIZE = 30;
+const KIND_NAMES = { exam: 'Prova', review: 'Revisão', study: 'Estudo' };
 // Study sets that cut across the four modules.
 const SETS = { linhas: { name: 'Linhas no chão', ids: Object.keys(BANK_SCENES) } };
 const LETTERS = 'ABCDE';
@@ -22,6 +25,8 @@ let viewing = null;
 let reviewFilter = 'wrong';
 let ticker;
 let toastTimer;
+// What the round just submitted did to the review list; shown once on its result screen.
+let lastChanges = null;
 
 function load(key, fallback) {
   try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
@@ -136,9 +141,7 @@ async function sync(options) {
 function renderHome() {
   const { questions, minutes, passScore } = bank.exam;
   $('exam-rules').textContent = `${questions} questões sorteadas, ${minutes} minutos. Para passar, acerte pelo menos ${passScore}. A correção só aparece quando você entregar.`;
-  const missed = load(KEYS.missed, []).filter(id => byId.has(id));
-  $('review').hidden = !missed.length;
-  $('review').textContent = `Treinar as que errei (${missed.length})`;
+  renderReviewBox();
   $('resume').hidden = !(attempt && !attempt.finishedAt);
   $('start').firstChild.textContent = attempt && !attempt.finishedAt ? 'Começar uma prova nova' : 'Começar prova';
   const seen = load(KEYS.seen, []).filter(id => byId.has(id));
@@ -193,8 +196,69 @@ function renderHome() {
     return item;
   }));
   $('history-hint').hidden = !history.some(entry => entry.review);
+  renderStats(history);
   renderSync();
   show('home');
+}
+
+function missLog() {
+  return load(KEYS.missedLog, {});
+}
+
+function dayName(at) {
+  const days = Math.round((at - new Date().setHours(0, 0, 0, 0)) / 86_400_000);
+  return days <= 1 ? 'amanhã' : days === 2 ? 'depois de amanhã' : `em ${days} dias`;
+}
+
+// Today's review: the misses whose day has come. The others wait, so they are only counted.
+function renderReviewBox() {
+  const now = Date.now();
+  const log = withLegacy();
+  const due = dueIds(log, now).filter(id => byId.has(id));
+  const later = waiting(log, now);
+  const missed = missedIds(log).filter(id => byId.has(id));
+  $('review-box').hidden = !missed.length;
+  $('review').hidden = !due.length;
+  $('review').textContent = `Revisar as de hoje (${Math.min(due.length, REVIEW_SIZE)})`;
+  $('review-note').textContent = due.length
+    ? `${due.length === 1 ? 'Uma questão errada voltou' : `${due.length} questões erradas voltaram`} para revisão${due.length > REVIEW_SIZE ? `; vão ${REVIEW_SIZE} por vez` : ''}.${later.count ? ` ${later.count === 1 ? 'Outra volta' : `Outras ${later.count} voltam`} a partir de ${dayName(later.next)}.` : ''}`
+    : `Nada para revisar hoje. ${later.count === 1 ? 'Uma questão volta' : `${later.count} questões voltam`} a partir de ${dayName(later.next)}.`;
+  $('review-all').hidden = missed.length <= due.length;
+  $('review-all').textContent = missed.length > ALL_SIZE ? `Treinar ${ALL_SIZE} das que errei agora, sorteadas (de ${missed.length})` : `Treinar todas as que errei agora (${missed.length})`;
+}
+
+// Misses saved by the version before the log are folded in, so they show up for review too.
+function withLegacy() {
+  return recordRound(missLog(), load(KEYS.missed, []), [], 0);
+}
+
+function renderStats(history) {
+  const stats = topicStats(bank, history);
+  const answered = Object.values(stats).reduce((sum, { total }) => sum + total, 0);
+  $('stats').hidden = !answered;
+  if (!answered) return;
+  const weak = weakest(stats);
+  const trend = examTrend(history);
+  const { passScore } = bank.exam;
+  $('stats-trend').textContent = trend.length ? `Últimas provas: ${trend.map(entry => entry.correct).join(' · ')} (precisa de ${passScore}).` : '';
+  $('stats-trend').hidden = !trend.length;
+  $('stats-ready').textContent = readiness(trend, passScore);
+  $('stats-topics').replaceChildren(...Object.entries(TOPICS).map(([topic, name]) => {
+    const { right, total } = stats[topic];
+    const item = document.createElement('li');
+    item.innerHTML = '<span class="topic-name"></span><span class="topic-bar"><span></span></span><span class="topic-count"></span>';
+    item.children[0].textContent = topic === weak ? `${name} · ponto fraco` : name;
+    item.children[1].firstChild.style.width = total ? `${Math.round(100 * right / total)}%` : '0';
+    item.children[2].textContent = total ? `${Math.round(100 * right / total)}%` : '–';
+    item.classList.toggle('weak', topic === weak);
+    item.classList.toggle('empty', !total);
+    item.setAttribute('aria-label', total ? `${name}: acertou ${right} de ${total}` : `${name}: ainda sem respostas`);
+    return item;
+  }));
+  $('stats-weak').hidden = !weak;
+  $('stats-weak').dataset.topic = weak ?? '';
+  if (weak) $('stats-weak').textContent = `Treinar meu ponto fraco: ${TOPICS[weak].toLowerCase()}`;
+  $('stats-hint').hidden = Boolean(weak);
 }
 
 function renderQuestion() {
@@ -210,8 +274,8 @@ function renderQuestion() {
   $('q-image').replaceChildren(...(question.image ? [signSvg(question.image, 'q-sign-clip')] : []));
   $('q-text').textContent = question.text;
   const given = attempt.answers[attempt.index];
-  // In a study round the answer is revealed as soon as one option is picked.
-  const revealed = attempt.kind === 'study' && given !== null;
+  // Outside the exam the answer is revealed as soon as one option is picked.
+  const revealed = attempt.kind !== 'exam' && given !== null;
   $('q-options').replaceChildren(...attempt.orders[attempt.index].map((index, position) => {
     const option = question.options[index];
     const button = document.createElement('button');
@@ -250,7 +314,7 @@ function renderQuestion() {
   $('q-prev').disabled = attempt.index === 0;
   const last = attempt.index === total - 1;
   $('q-next-label').textContent = last ? (attempt.kind === 'exam' ? 'Entregar prova' : 'Ver resultado') : 'Próxima';
-  document.querySelector('.grid-box').hidden = attempt.kind === 'study';
+  document.querySelector('.grid-box').hidden = attempt.kind !== 'exam';
   $('submit').textContent = attempt.kind === 'exam' ? 'Entregar prova agora' : 'Encerrar e ver resultado';
   $('q-grid').replaceChildren(...attempt.ids.map((_, index) => {
     const cell = document.createElement('button');
@@ -304,12 +368,13 @@ function openExam() {
 function submit() {
   clearInterval(ticker);
   attempt = finish(attempt, Date.now());
-  const result = score(attempt, bank);
-  const missedBefore = load(KEYS.missed, []);
-  const missedAfter = updateMissed(missedBefore, attempt, bank);
-  save(KEYS.missed, missedAfter);
-  // When each miss was added or fixed, so other devices merge question by question (merge.js).
-  save(KEYS.missedLog, recordMissed(load(KEYS.missedLog, {}), missedBefore, missedAfter, Date.now()));
+  const before = withLegacy();
+  const results = attempt.ids.map((id, position) => ({ id, right: attempt.answers[position] === byId.get(id).answer }));
+  // Each change is dated, so other devices merge question by question (merge.js).
+  const log = recordRound(before, [], results, Date.now());
+  save(KEYS.missedLog, log);
+  save(KEYS.missed, missedIds(log));
+  lastChanges = roundChanges(before, log, attempt.ids);
   save(KEYS.seen, updateSeen(load(KEYS.seen, []), attempt, bank));
   const topic = attempt.kind === 'study' && !attempt.set ? byId.get(attempt.ids[0]).topic : undefined;
   save(KEYS.history, [historyEntry(attempt, bank, topic), ...loadHistory()].slice(0, 30));
@@ -356,6 +421,14 @@ function renderResult(view = attempt, { past = false } = {}) {
     return item;
   }));
   $('retry-wrong').hidden = !result.wrong.length;
+  const changes = past ? null : lastChanges;
+  const parts = changes ? [
+    changes.back && `${changes.back === 1 ? 'uma errada volta' : `${changes.back} erradas voltam`} amanhã para revisão`,
+    changes.up && `${changes.up === 1 ? 'uma revisão acertada volta' : `${changes.up} revisões acertadas voltam`} mais tarde`,
+    changes.done && `${changes.done === 1 ? 'uma saiu' : `${changes.done} saíram`} da lista de erros`,
+  ].filter(Boolean) : [];
+  $('srs-result').hidden = !parts.length;
+  $('srs-result').textContent = parts.length ? `${parts.join(', ').replace(/^./, char => char.toUpperCase())}.` : '';
   reviewFilter = result.wrong.length ? 'wrong' : 'right';
   renderReview();
   show('result');
@@ -405,12 +478,21 @@ const newExam = () => startAttempt(drawExam(bank, Math.random, load(KEYS.seen, [
 $('start').addEventListener('click', newExam);
 $('resume').addEventListener('click', openExam);
 $('review').addEventListener('click', () => {
-  const missed = load(KEYS.missed, []).filter(id => byId.has(id));
-  if (missed.length) startAttempt(missed.slice(0, 30), 'review');
+  const due = dueIds(withLegacy(), Date.now()).filter(id => byId.has(id));
+  if (due.length) startAttempt(due.slice(0, REVIEW_SIZE), 'review');
+});
+$('review-all').addEventListener('click', () => {
+  // Drawn at random, so a long list is seen whole over a few rounds instead of always the same first 30.
+  const missed = shuffled(missedIds(withLegacy()).filter(id => byId.has(id)));
+  if (missed.length) startAttempt(missed.slice(0, ALL_SIZE), 'review');
+});
+$('stats-weak').addEventListener('click', event => {
+  const { topic } = event.currentTarget.dataset;
+  if (topic) startAttempt(drawStudy(bank, topic, STUDY_SIZE, Math.random, load(KEYS.seen, [])), 'study');
 });
 $('q-prev').addEventListener('click', () => { attempt = goTo(attempt, attempt.index - 1); persistAttempt(); renderQuestion(); });
 $('q-next').addEventListener('click', () => {
-  if (attempt.index === attempt.ids.length - 1) return attempt.kind === 'study' && !unanswered(attempt) ? submit() : askSubmit();
+  if (attempt.index === attempt.ids.length - 1) return attempt.kind !== 'exam' && !unanswered(attempt) ? submit() : askSubmit();
   attempt = goTo(attempt, attempt.index + 1);
   persistAttempt();
   renderQuestion();

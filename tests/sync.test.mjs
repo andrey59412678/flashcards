@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../sync-worker/src/index.js';
-import { merge, normalize, recordMissed, missedIds } from '../public/merge.js';
+import { merge, normalize, missedIds } from '../public/merge.js';
+import { recordRound } from '../public/srs.js';
 import { newCode, formatCode, parseCode, syncNow, localSnapshot, KEYS } from '../public/sync.js';
 
 const round = (at, extra = {}) => ({ at, kind: 'exam', correct: 20, total: 30, passed: true, ...extra });
@@ -52,19 +53,33 @@ test('misses merge question by question, so no device loses a miss or brings bac
   const missedBefore = { missed: { q: [200, true] } };
   assert.deepEqual(missedIds(merge(fixed, missedBefore).missed), []);
   assert.deepEqual(merge(fixed, missedBefore), merge(missedBefore, fixed));
+  // Same stamp on both devices: the miss wins, then the full entry over the copy an old app version strips.
+  const a = { missed: { t: [7, true, 2, 50] } };
+  const b = { missed: { t: [7, true] } };
+  assert.deepEqual(merge(a, b), merge(b, a));
+  assert.deepEqual(merge(a, b).missed.t, [7, true, 2, 50]);
+  assert.deepEqual(merge({ missed: { t: [7, false] } }, b).missed.t, [7, true, 1, 0]);
+});
+
+test('drill bests are kept per drill, the best rate winning from either side', () => {
+  const x = { bests: { numeros: { correct: 9, total: 12 }, socorro: { correct: 3, total: 6 } } };
+  const y = { bests: { numeros: { correct: 11, total: 12 }, preferencia: { correct: 6, total: 8 }, socorro: { correct: 6, total: 12 } } };
+  assert.deepEqual(merge(x, y).bests, { numeros: { correct: 11, total: 12 }, preferencia: { correct: 6, total: 8 }, socorro: { correct: 6, total: 12 } });
+  assert.deepEqual(merge(x, y), merge(y, x));
 });
 
 test('recording a round dates only what changed and never stamps backwards', () => {
-  const first = recordMissed({}, ['legacy'], ['legacy', 'new'], 1000);
-  assert.deepEqual(first, { legacy: [0, true], new: [1000, true] });
-  const late = recordMissed({ x: [9000, true] }, ['x'], [], 5000);
-  assert.deepEqual(late.x, [9001, false], 'a device with a late clock still wins over its own past');
-  assert.deepEqual(recordMissed(first, ['legacy', 'new'], ['legacy', 'new'], 2000), first, 'an unrelated round changes nothing');
+  const first = recordRound({}, ['legacy'], [{ id: 'new', right: false }], 1000);
+  assert.deepEqual(first.legacy, [0, true, 1, 0]);
+  assert.equal(first.new[0], 1000);
+  const late = recordRound({ x: [9000, true, 3, 0] }, [], [{ id: 'x', right: true }], 5000);
+  assert.deepEqual(late.x, [9001, false, 0, 0], 'a device with a late clock still wins over its own past');
+  assert.deepEqual(recordRound(first, [], [{ id: 'other', right: true }], 2000), first, 'an unrelated round changes nothing');
 });
 
 test('a damaged snapshot is cleaned instead of breaking the merge', () => {
-  const clean = normalize({ history: [null, 3, round(1), { at: 'x' }], seen: 'nope', missed: { a: [1, true], b: 'x', c: [1] }, linhasBest: { correct: 'x' } });
-  assert.deepEqual(clean, { v: 1, history: [round(1)], seen: [], missed: { a: [1, true] }, linhasBest: null });
+  const clean = normalize({ history: [null, 3, round(1), { at: 'x' }], seen: 'nope', missed: { a: [1, true], b: 'x', c: [1], d: [2, true, 9, 'x'], e: [3, false, 2, 5] }, linhasBest: { correct: 'x' }, bests: { numeros: { correct: 3, total: 4 }, 'X!': { correct: 1, total: 1 }, socorro: { correct: 1, total: 0 } } });
+  assert.deepEqual(clean, { v: 1, history: [round(1)], seen: [], missed: { a: [1, true, 1, 0], d: [2, true, 1, 0], e: [3, false, 0, 0] }, linhasBest: null, bests: { numeros: { correct: 3, total: 4 } } });
 });
 
 test('the worker merges every write with what it has, and answers only the app origins', async () => {

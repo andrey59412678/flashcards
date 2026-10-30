@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#182b36">
+  <meta name="description" content="Treinos rápidos para a prova teórica: linhas no chão, quem passa primeiro, números e prazos, primeiros socorros.">
+  <title>Treinos · Autoescola</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./treino.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="./treino.html" aria-label="Treinos, início"><img src="./favicon.svg" alt="" width="36" height="36"><span>treinos</span></a>
+      <nav class="app-nav" aria-label="Seções"><a href="./">Placas</a><a href="./simulado.html">Simulado</a><a href="./treino.html" aria-current="page">Treinos</a></nav>
+    </header>
+    <main>
+      <section id="hub" hidden>
+        <h1>Treinos rápidos</h1>
+        <p class="lede">Rodadas curtas sobre o que mais derruba na prova. A resposta e o porquê aparecem na hora.</p>
+        <ul id="drills" class="drill-list"></ul>
+      </section>
+
+      <section id="intro" hidden>
+        <h1 id="t-title"></h1>
+        <p class="lede" id="t-lede"></p>
+        <ul id="t-rules" class="rule-list plain"></ul>
+        <button id="start" class="primary" type="button"><span id="start-label">Começar</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+        <a class="text-button" href="./treino.html">Outros treinos</a>
+        <p class="bank-size" id="best" hidden></p>
+      </section>
+
+      <section id="drill" hidden>
+        <div class="exam-bar"><span id="d-position">1 de 12</span><span id="d-score" class="answered-count"></span></div>
+        <progress id="d-progress" max="12" value="0" aria-label="Itens respondidos"></progress>
+        <article class="question-card road-card">
+          <p id="d-group" class="card-topline" hidden></p>
+          <div id="d-figure" class="road-frame" hidden></div>
+          <p id="d-prompt" class="question-text"></p>
+          <div id="d-options" class="options" role="radiogroup" aria-labelledby="d-prompt"></div>
+          <ol id="d-steps" class="steps" aria-describedby="d-pick-status" hidden></ol><p id="d-pick-status" class="visually-hidden" aria-live="polite"></p>
+          <button id="d-check" class="secondary check" type="button" hidden disabled>Conferir a ordem</button>
+          <div id="d-feedback" class="feedback" aria-live="polite" hidden><p class="feedback-verdict" id="d-verdict"></p><ol id="d-solution" class="solution" hidden></ol><p class="feedback-why" id="d-why"></p></div>
+        </article>
+        <div class="study-actions">
+          <button id="d-next" class="primary" type="button" disabled><span id="d-next-label">Próxima</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <button id="d-quit" class="text-button" type="button">Parar o treino</button>
+      </section>
+
+      <section id="done" hidden>
+        <div id="d-verdict-box" class="verdict">
+          <p class="verdict-label" id="d-label"></p>
+          <p class="verdict-score"><strong id="d-correct"></strong><span id="d-total"></span></p>
+          <p class="verdict-detail" id="d-detail"></p>
+        </div>
+        <div class="result-actions">
+          <button id="again" class="primary" type="button">Mais uma rodada</button>
+          <a class="secondary" href="./treino.html">Outros treinos</a>
+          <a class="text-button" href="./simulado.html">Ir para o simulado</a>
+        </div>
+      </section>
+    </main>
+    <footer><span class="footer-dash" aria-hidden="true"></span>Treino curto todo dia vale mais que um longo de vez em quando.</footer>
+  </div>
+</body>
+</html>

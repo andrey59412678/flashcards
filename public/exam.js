@@ -113,8 +113,8 @@ export function newAttempt(ids, { now, minutes = null, kind = 'exam', orders, se
 
 export function choose(attempt, option) {
   if (attempt.finishedAt) return attempt;
-  // Study rounds reveal the answer right away, so the first choice is final.
-  if (attempt.kind === 'study' && attempt.answers[attempt.index] !== null) return attempt;
+  // Outside the exam the answer is revealed right away, so the first choice is final.
+  if (attempt.kind !== 'exam' && attempt.answers[attempt.index] !== null) return attempt;
   const answers = [...attempt.answers];
   answers[attempt.index] = answers[attempt.index] === option ? null : option;
   return { ...attempt, answers };
@@ -178,19 +178,6 @@ export function restoreAttempt(bank, saved) {
   if (!orders.every(validOrder)) return null;
   if (!Number.isFinite(saved.startedAt) || (saved.deadline !== null && !Number.isFinite(saved.deadline)) || (saved.finishedAt !== null && !Number.isFinite(saved.finishedAt))) return null;
   return { version: 1, kind: saved.kind, set: typeof saved.set === 'string' ? saved.set : null, ids: [...ids], orders: orders.map(order => [...order]), answers: [...answers], index, startedAt: saved.startedAt, deadline: saved.deadline, finishedAt: saved.finishedAt };
-}
-
-// Misses accumulate across exams and leave the list once answered right in a later attempt.
-export function updateMissed(missed, attempt, bank) {
-  const { wrong } = score(attempt, bank);
-  const wrongSet = new Set(wrong);
-  const known = new Set(bank.questions.map(q => q.id));
-  const next = new Set((missed ?? []).filter(id => known.has(id)));
-  for (const id of attempt.ids) {
-    if (wrongSet.has(id)) next.add(id);
-    else next.delete(id);
-  }
-  return [...next];
 }
 
 // A finished round as kept in the history, with its answers, so its correction can be reopened later.

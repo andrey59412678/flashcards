@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { access, readFile } from 'node:fs/promises';
-import { TOPICS, validateBank, drawExam, drawStudy, coverage, updateSeen, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed, historyEntry, reviewFromHistory, reviewPositions } from '../public/exam.js';
+import { TOPICS, validateBank, drawExam, drawStudy, coverage, updateSeen, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, historyEntry, reviewFromHistory, reviewPositions } from '../public/exam.js';
 
 const real = validateBank(JSON.parse(await readFile(new URL('../public/questions.json', import.meta.url), 'utf8')));
 
@@ -92,17 +92,6 @@ test('a review round has no timer and is judged by the exam percentage', () => {
   assert.equal(attempt.deadline, null);
   assert.equal(isExpired(attempt, 10 ** 12), false);
   assert.equal(score(attempt, bank).needed, Math.ceil(3 * bank.exam.passScore / 30));
-});
-
-test('missed questions accumulate and leave once answered right', () => {
-  const bank = syntheticBank();
-  const ids = ['placas-0', 'placas-1'];
-  let attempt = { ...newAttempt(ids, { now: 0, kind: 'review' }), answers: [0, 0] };
-  let missed = updateMissed(['gone', 'cuidar-3'], attempt, bank);
-  assert.deepEqual(missed.sort(), ['cuidar-3', 'placas-1']);
-  attempt = { ...attempt, answers: [0, 1] };
-  missed = updateMissed(missed, attempt, bank);
-  assert.deepEqual(missed, ['cuidar-3']);
 });
 
 test('options are reshuffled per attempt but answers keep pointing at the original option', () => {

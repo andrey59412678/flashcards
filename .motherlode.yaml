@@ -42,6 +42,16 @@ runbook: |
   embaixo subindo. BANK_SCENES em road.js liga 18 questoes de linha do banco a uma cena; o simulado mostra o
   desenho so depois da resposta e oferece o conjunto de estudo "Linhas no chao" (simulado.html#linhas).
   Regras revisadas contra MBST vol. IV (LFO-1..4, LMS-1/2, canalizacao). Melhor rodada em linhas.best.v1.
+  Revisao espacada dos erros (public/srs.js): erro volta no dia seguinte, acerto no dia certo sobe a caixa
+  (3 e 7 dias), acerto na ultima tira da lista; errar recomeca. Estado em simulado.missed-log.v1 como
+  {id: [at, isMissed, box, due]}; entradas antigas [at, isMissed] valem caixa 1, vencidas. Empate de data no
+  merge: o erro vence, depois o due mais tarde (copia de versao antiga chega sem box/due). Painel "Seu
+  desempenho" (public/stats.js) le o historico: acerto por tema, ponto fraco (min. 8 respostas), ultimas provas.
+  Treinos em treino.html?t=<chave> (motor em treino.js): preferencia (cross.js, SVG de cruzamento),
+  numeros (numeros.js), socorro (socorro.js, ordenar passos). Cada fato/cena/sequencia cita a questao do
+  banco (ou artigo do CTB); tests/drills.test.mjs confere. Recordes em treino.best.v1, sincronizados em bests.
+  Ao mudar o formato do snapshot: deploy do Worker ANTES do push do Pages (Worker antigo descarta campos novos
+  e o app entraria em laco de PUT).
   Códigos sourceCode preservam a fonte e não são exibidos; última linha da imagem de advertência contém códigos repetidos.
 commands:
   health:
