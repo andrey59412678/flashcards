@@ -28,6 +28,11 @@ runbook: |
   Sorteio de prova e estudo prioriza questoes ineditas; a home mostra cobertura por modulo.
   Prova, erros, historico e vistas ficam no localStorage: simulado.attempt.v1, simulado.missed.v1,
   simulado.history.v1, simulado.seen.v1.
+  Treino visual de sinalizacao horizontal em linhas.html (logica e SVG puros em road.js): rodadas de 12
+  situacoes geradas (pode ultrapassar? / quem pode, com as alternativas no texto da prova / cor), voce sempre
+  embaixo subindo. BANK_SCENES em road.js liga 18 questoes de linha do banco a uma cena; o simulado mostra o
+  desenho so depois da resposta e oferece o conjunto de estudo "Linhas no chao" (simulado.html#linhas).
+  Regras revisadas contra MBST vol. IV (LFO-1..4, LMS-1/2, canalizacao). Melhor rodada em linhas.best.v1.
   Códigos sourceCode preservam a fonte e não são exibidos; última linha da imagem de advertência contém códigos repetidos.
 commands:
   health:

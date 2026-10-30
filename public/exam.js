@@ -67,6 +67,12 @@ export function drawStudy(bank, topic, size, random = Math.random, seen = []) {
   return unseenFirst(bank.questions.filter(q => q.topic === topic), seen, random).slice(0, size).map(q => q.id);
 }
 
+// A hand-picked study set that cuts across modules, such as the questions about lines on the road.
+export function drawSet(bank, ids, size, random = Math.random, seen = []) {
+  const wanted = new Set(ids);
+  return unseenFirst(bank.questions.filter(q => wanted.has(q.id)), seen, random).slice(0, size).map(q => q.id);
+}
+
 export function coverage(bank, seen) {
   const seenSet = new Set(seen ?? []);
   const result = {};
@@ -90,10 +96,11 @@ export function optionOrders(bank, ids, random = Math.random) {
   return ids.map(id => shuffled(byId.get(id).options.map((_, index) => index), random));
 }
 
-export function newAttempt(ids, { now, minutes = null, kind = 'exam', orders }) {
+export function newAttempt(ids, { now, minutes = null, kind = 'exam', orders, set = null }) {
   return {
     version: 1,
     kind,
+    set,
     ids: [...ids],
     orders: orders.map(order => [...order]),
     answers: ids.map(() => null),
@@ -170,7 +177,7 @@ export function restoreAttempt(bank, saved) {
   const validOrder = (order, i) => Array.isArray(order) && order.length === byId.get(ids[i]).options.length && [...order].sort((a, b) => a - b).every((value, k) => value === k);
   if (!orders.every(validOrder)) return null;
   if (!Number.isFinite(saved.startedAt) || (saved.deadline !== null && !Number.isFinite(saved.deadline)) || (saved.finishedAt !== null && !Number.isFinite(saved.finishedAt))) return null;
-  return { version: 1, kind: saved.kind, ids: [...ids], orders: orders.map(order => [...order]), answers: [...answers], index, startedAt: saved.startedAt, deadline: saved.deadline, finishedAt: saved.finishedAt };
+  return { version: 1, kind: saved.kind, set: typeof saved.set === 'string' ? saved.set : null, ids: [...ids], orders: orders.map(order => [...order]), answers: [...answers], index, startedAt: saved.startedAt, deadline: saved.deadline, finishedAt: saved.finishedAt };
 }
 
 // Misses accumulate across exams and leave the list once answered right in a later attempt.
