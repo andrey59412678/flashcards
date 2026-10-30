@@ -1,4 +1,4 @@
-import { TOPICS, validateBank, drawExam, drawStudy, drawSet, coverage, updateSeen, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from './exam.js';
+import { TOPICS, validateBank, drawExam, drawStudy, drawSet, coverage, updateSeen, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed, historyEntry, reviewFromHistory, reviewPositions } from './exam.js';
 
 import { BANK_SCENES, roadSvg, explain } from './road.js';
 
@@ -15,6 +15,9 @@ const svgNS = 'http://www.w3.org/2000/svg';
 let bank;
 let byId;
 let attempt = null;
+// The finished round on the result screen: the one just submitted or one reopened from the history.
+let viewing = null;
+let reviewFilter = 'wrong';
 let ticker;
 let toastTimer;
 
@@ -30,6 +33,12 @@ function save(key, value) {
   } catch {
     $('storage-notice').hidden = false;
   }
+}
+
+// Only well-formed rounds; a damaged entry is dropped instead of taking the whole page down.
+function loadHistory() {
+  const history = load(KEYS.history, []);
+  return Array.isArray(history) ? history.filter(entry => entry && typeof entry === 'object' && Number.isFinite(entry.at) && Number.isFinite(entry.correct) && Number.isFinite(entry.total)) : [];
 }
 
 function notify(message) {
@@ -96,6 +105,11 @@ function roundName(entry) {
   return entry.set ? SETS[entry.set]?.name : entry.topic ? TOPICS[entry.topic] : '';
 }
 
+function when(at) {
+  const date = new Date(at);
+  return `${date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} ${date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+}
+
 function renderHome() {
   const { questions, minutes, passScore } = bank.exam;
   $('exam-rules').textContent = `${questions} questões sorteadas, ${minutes} minutos. Para passar, acerte pelo menos ${passScore}. A correção só aparece quando você entregar.`;
@@ -135,17 +149,27 @@ function renderHome() {
     button.addEventListener('click', () => startSet(key));
     return button;
   }));
-  const history = load(KEYS.history, []);
+  const history = loadHistory();
   $('history').hidden = !history.length;
-  $('history-list').replaceChildren(...history.slice(0, 6).map(entry => {
+  $('history-list').replaceChildren(...history.slice(0, 10).map(entry => {
     const item = document.createElement('li');
-    const date = new Date(entry.at).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-    item.innerHTML = `<span></span><strong></strong>`;
-    item.firstChild.textContent = `${date} · ${KIND_NAMES[entry.kind] ?? 'Treino'}${roundName(entry) ? ` · ${roundName(entry)}` : ''}`;
-    item.lastChild.textContent = `${entry.correct}/${entry.total}`;
+    const past = reviewFromHistory(bank, entry);
+    const row = document.createElement(past ? 'button' : 'div');
+    row.className = 'history-row';
+    row.innerHTML = '<span class="history-name"></span><strong></strong>';
+    row.firstChild.textContent = `${when(entry.at)} · ${KIND_NAMES[entry.kind] ?? 'Treino'}${roundName(entry) ? ` · ${roundName(entry)}` : ''}`;
+    row.children[1].textContent = `${entry.correct}/${entry.total}`;
+    if (past) {
+      row.type = 'button';
+      row.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>');
+      row.setAttribute('aria-label', `Ver a correção: ${row.firstChild.textContent}, ${entry.correct} de ${entry.total}`);
+      row.addEventListener('click', () => renderResult(past, { past: true }));
+    }
+    item.append(row);
     item.classList.add(entry.passed ? 'pass' : 'fail');
     return item;
   }));
+  $('history-hint').hidden = !history.some(entry => entry.review);
   show('home');
 }
 
@@ -239,6 +263,8 @@ function persistAttempt() {
 }
 
 function startAttempt(ids, kind, set = null) {
+  // Every way into a new round passes here, including the buttons under an old round's correction.
+  if (attempt && !attempt.finishedAt && !window.confirm('Você tem uma prova em andamento. Começar outra rodada descarta essa prova. Continuar?')) return;
   attempt = newAttempt(ids, { now: Date.now(), minutes: kind === 'exam' ? bank.exam.minutes : null, kind, set, orders: optionOrders(bank, ids) });
   persistAttempt();
   openExam();
@@ -258,7 +284,7 @@ function submit() {
   save(KEYS.missed, updateMissed(load(KEYS.missed, []), attempt, bank));
   save(KEYS.seen, updateSeen(load(KEYS.seen, []), attempt, bank));
   const topic = attempt.kind === 'study' && !attempt.set ? byId.get(attempt.ids[0]).topic : undefined;
-  save(KEYS.history, [{ at: attempt.finishedAt, kind: attempt.kind, topic, set: attempt.set ?? undefined, correct: result.correct, total: result.total, passed: result.passed }, ...load(KEYS.history, [])].slice(0, 30));
+  save(KEYS.history, [historyEntry(attempt, bank, topic), ...loadHistory()].slice(0, 30));
   persistAttempt();
   renderResult();
 }
@@ -274,22 +300,23 @@ function askSubmit() {
   $('confirm').showModal();
 }
 
-function renderResult() {
-  const result = score(attempt, bank);
-  const isExam = attempt.kind === 'exam';
+function renderResult(view = attempt, { past = false } = {}) {
+  viewing = view;
+  const result = score(view, bank);
+  const isExam = view.kind === 'exam';
   $('verdict').classList.toggle('pass', result.passed);
   $('verdict').classList.toggle('fail', !result.passed);
-  const studySet = attempt.kind === 'study' ? attempt.set : null;
-  const studyTopic = attempt.kind === 'study' && !studySet ? byId.get(attempt.ids[0]).topic : null;
-  const studyName = studySet ? SETS[studySet].name : studyTopic ? TOPICS[studyTopic] : null;
+  const studySet = view.kind === 'study' ? view.set : null;
+  const studyTopic = view.kind === 'study' && !studySet ? byId.get(view.ids[0]).topic : null;
+  const studyName = studySet ? SETS[studySet]?.name : studyTopic ? TOPICS[studyTopic] : null;
   $('again').textContent = studyName ? `Mais ${STUDY_SIZE} de ${studyName.toLowerCase()}` : 'Fazer outra prova';
   $('again').dataset.topic = studyTopic ?? '';
-  $('again').dataset.set = studySet ?? '';
+  $('again').dataset.set = studyName && studySet ? studySet : '';
   $('verdict-label').textContent = isExam ? (result.passed ? 'Aprovada' : 'Reprovada') : (result.passed ? 'Mandou bem' : 'Ainda não');
   $('verdict-correct').textContent = String(result.correct);
   $('verdict-total').textContent = ` de ${result.total}`;
-  const minutes = Math.round((attempt.finishedAt - attempt.startedAt) / 60_000);
-  $('verdict-detail').textContent = `${isExam ? 'Precisava de' : 'Na proporção da prova, precisaria de'} ${result.needed} acertos. ${isExam ? `Tempo usado: ${minutes} min.` : ''}`.trim();
+  const minutes = Math.round((view.finishedAt - view.startedAt) / 60_000);
+  $('verdict-detail').textContent = `${past ? `${KIND_NAMES[view.kind]} de ${when(view.finishedAt)}. ` : ''}${isExam ? 'Precisava de' : 'Na proporção da prova, precisaria de'} ${result.needed} acertos. ${isExam ? `Tempo usado: ${minutes} min.` : ''}`.trim();
   $('topic-scores').replaceChildren(...Object.keys(TOPICS).filter(topic => result.byTopic[topic]).map(topic => {
     const { correct, total } = result.byTopic[topic];
     const item = document.createElement('li');
@@ -300,27 +327,49 @@ function renderResult() {
     return item;
   }));
   $('retry-wrong').hidden = !result.wrong.length;
-  $('review-title').textContent = result.wrong.length ? `Correção das ${result.wrong.length} que você errou` : 'Você acertou todas!';
-  $('review-list').replaceChildren(...attempt.ids.flatMap((id, position) => {
+  reviewFilter = result.wrong.length ? 'wrong' : 'right';
+  renderReview();
+  show('result');
+}
+
+const FILTERS = { wrong: 'Erradas', right: 'Certas', all: 'Todas' };
+
+// The correction of the round on screen: every question can be reread with its right answer and comment.
+function renderReview() {
+  const view = viewing;
+  const counts = Object.fromEntries(Object.keys(FILTERS).map(filter => [filter, reviewPositions(view, bank, filter).length]));
+  $('review-title').textContent = counts.wrong ? 'Correção' : 'Você acertou todas!';
+  $('review-filter').replaceChildren(...Object.entries(FILTERS).map(([filter, name]) => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'filter';
+    chip.classList.toggle('active', filter === reviewFilter);
+    chip.setAttribute('aria-pressed', String(filter === reviewFilter));
+    chip.textContent = `${name} ${counts[filter]}`;
+    chip.disabled = !counts[filter];
+    chip.addEventListener('click', () => { reviewFilter = filter; renderReview(); });
+    return chip;
+  }));
+  $('review-list').replaceChildren(...reviewPositions(view, bank, reviewFilter).map(position => {
+    const id = view.ids[position];
     const question = byId.get(id);
-    const given = attempt.answers[position];
-    if (given === question.answer) return [];
+    const given = view.answers[position];
+    const right = given === question.answer;
     const item = document.createElement('li');
-    item.className = 'review-item';
-    const letter = option => LETTERS[attempt.orders[position].indexOf(option)];
-    const parts = [`<p class="review-meta"></p>`, question.image ? '<div class="review-sign"></div>' : '', '<p class="review-q"></p>', '<p class="review-given"></p>', '<p class="review-right"></p>', question.explanation ? '<p class="review-why"></p>' : ''];
+    item.className = `review-item ${right ? 'is-right' : 'is-wrong'}`;
+    const letter = option => LETTERS[view.orders[position].indexOf(option)];
+    const parts = [`<p class="review-meta"></p>`, question.image ? '<div class="review-sign"></div>' : '', '<p class="review-q"></p>', '<p class="review-given"></p>', right ? '' : '<p class="review-right"></p>', question.explanation ? '<p class="review-why"></p>' : ''];
     item.innerHTML = parts.join('');
     const figure = roadFigure(id, `review-road-${position}`);
     if (figure) item.append(figure);
-    item.querySelector('.review-meta').textContent = `Questão ${position + 1} · ${TOPICS[question.topic]}`;
+    item.querySelector('.review-meta').textContent = `Questão ${position + 1} · ${TOPICS[question.topic]} · ${right ? 'acertou' : given === null ? 'em branco' : 'errou'}`;
     if (question.image) item.querySelector('.review-sign').append(signSvg(question.image, `review-clip-${position}`));
     item.querySelector('.review-q').textContent = question.text;
     item.querySelector('.review-given').textContent = given === null ? 'Você deixou em branco.' : `Você marcou: ${letter(given)}) ${question.options[given]}`;
-    item.querySelector('.review-right').textContent = `Certa: ${letter(question.answer)}) ${question.options[question.answer]}`;
+    if (!right) item.querySelector('.review-right').textContent = `Certa: ${letter(question.answer)}) ${question.options[question.answer]}`;
     if (question.explanation) item.querySelector('.review-why').textContent = question.explanation;
-    return [item];
+    return item;
   }));
-  show('result');
 }
 
 const newExam = () => startAttempt(drawExam(bank, Math.random, load(KEYS.seen, [])), 'exam');
@@ -345,7 +394,7 @@ $('again').addEventListener('click', event => {
   else if (topic) startAttempt(drawStudy(bank, topic, STUDY_SIZE, Math.random, load(KEYS.seen, [])), 'study');
   else newExam();
 });
-$('retry-wrong').addEventListener('click', () => startAttempt(score(attempt, bank).wrong, 'review'));
+$('retry-wrong').addEventListener('click', () => startAttempt(score(viewing, bank).wrong, 'review'));
 $('home-link').addEventListener('click', renderHome);
 $('reload').addEventListener('click', () => window.location.reload());
 document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });

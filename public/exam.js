@@ -192,3 +192,27 @@ export function updateMissed(missed, attempt, bank) {
   }
   return [...next];
 }
+
+// A finished round as kept in the history, with its answers, so its correction can be reopened later.
+export function historyEntry(attempt, bank, topic) {
+  const { correct, total, passed } = score(attempt, bank);
+  const { ids, orders, answers, startedAt, kind, set } = attempt;
+  return { at: attempt.finishedAt, kind, topic, set: set ?? undefined, correct, total, passed, review: { ids, orders, answers, startedAt } };
+}
+
+// Rebuilds the finished round behind a history entry. Null for entries saved before answers were kept,
+// or when the bank no longer has one of its questions.
+export function reviewFromHistory(bank, entry) {
+  const review = entry?.review;
+  if (!review || !Number.isFinite(entry.at)) return null;
+  return restoreAttempt(bank, { version: 1, kind: entry.kind, set: entry.set ?? null, ids: review.ids, orders: review.orders, answers: review.answers, index: 0, startedAt: review.startedAt, deadline: null, finishedAt: entry.at });
+}
+
+// Positions of a finished round to show in its correction: the misses (blank counts as a miss), the hits, or all.
+export function reviewPositions(attempt, bank, filter = 'wrong') {
+  const byId = new Map(bank.questions.map(q => [q.id, q]));
+  return attempt.ids.flatMap((id, position) => {
+    const right = attempt.answers[position] === byId.get(id).answer;
+    return filter === 'all' || (filter === 'right') === right ? [position] : [];
+  });
+}

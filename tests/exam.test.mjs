@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { access, readFile } from 'node:fs/promises';
-import { TOPICS, validateBank, drawExam, drawStudy, coverage, updateSeen, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed } from '../public/exam.js';
+import { TOPICS, validateBank, drawExam, drawStudy, coverage, updateSeen, optionOrders, newAttempt as rawAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed, historyEntry, reviewFromHistory, reviewPositions } from '../public/exam.js';
 
 const real = validateBank(JSON.parse(await readFile(new URL('../public/questions.json', import.meta.url), 'utf8')));
 
@@ -185,4 +185,37 @@ test('broken banks are rejected before they reach the page', () => {
   }
   assert.throws(() => validateBank({ ...base, exam: { ...base.exam, passScore: 31 } }));
   assert.throws(() => validateBank({ ...base, exam: { ...base.exam, distribution: { legislacao: 29 } } }));
+});
+
+test('a finished round kept in the history reopens with the same answers, order and score', () => {
+  const bank = syntheticBank();
+  const ids = drawExam(bank, () => 0.3);
+  let attempt = newAttempt(ids, { now: 1000, minutes: 60, kind: 'exam' });
+  const byId = new Map(bank.questions.map(q => [q.id, q]));
+  ids.forEach((id, i) => { attempt = goTo(attempt, i); if (i % 3) attempt = choose(attempt, i % 2 ? byId.get(id).answer : (byId.get(id).answer + 1) % 4); });
+  attempt = finish(attempt, 61_000);
+  const entry = JSON.parse(JSON.stringify(historyEntry(attempt, bank)));
+  assert.equal(entry.correct, score(attempt, bank).correct);
+  const reopened = reviewFromHistory(bank, entry);
+  assert.deepEqual(reopened.answers, attempt.answers);
+  assert.deepEqual(reopened.orders, attempt.orders);
+  assert.equal(reopened.finishedAt, 61_000);
+  assert.deepEqual(score(reopened, bank), score(attempt, bank));
+
+  const wrong = reviewPositions(reopened, bank, 'wrong');
+  const right = reviewPositions(reopened, bank, 'right');
+  assert.equal(wrong.length + right.length, ids.length);
+  assert.equal(right.length, entry.correct);
+  assert.ok(wrong.includes(0), 'a blank answer is listed with the misses');
+  assert.deepEqual(reviewPositions(reopened, bank, 'all'), ids.map((_, i) => i));
+});
+
+test('history entries without answers, or with questions gone from the bank, cannot be reopened', () => {
+  const bank = syntheticBank();
+  assert.equal(reviewFromHistory(bank, { at: 5, kind: 'exam', correct: 20, total: 30, passed: true }), null);
+  const ids = drawExam(bank, () => 0.4);
+  const entry = historyEntry(finish(newAttempt(ids, { now: 1, kind: 'exam' }), 2), bank);
+  assert.ok(reviewFromHistory(bank, entry));
+  assert.equal(reviewFromHistory(bank, { ...entry, review: { ...entry.review, ids: ['gone', ...ids.slice(1)] } }), null);
+  assert.equal(reviewFromHistory(bank, { ...entry, review: { ...entry.review, answers: entry.review.answers.slice(1) } }), null);
 });

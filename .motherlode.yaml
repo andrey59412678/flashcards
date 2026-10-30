@@ -28,6 +28,9 @@ runbook: |
   Sorteio de prova e estudo prioriza questoes ineditas; a home mostra cobertura por modulo.
   Prova, erros, historico e vistas ficam no localStorage: simulado.attempt.v1, simulado.missed.v1,
   simulado.history.v1, simulado.seen.v1.
+  O historico (30 rodadas) guarda ids/orders/answers de cada rodada (historyEntry); a home lista 10 e reabre a
+  correcao completa com filtro erradas/certas/todas (reviewFromHistory). Entradas antigas sem respostas ficam
+  so como linha. Comecar rodada nova com prova em andamento pede confirmacao.
   Treino visual de sinalizacao horizontal em linhas.html (logica e SVG puros em road.js): rodadas de 12
   situacoes geradas (pode ultrapassar? / quem pode, com as alternativas no texto da prova / cor), voce sempre
   embaixo subindo. BANK_SCENES em road.js liga 18 questoes de linha do banco a uma cena; o simulado mostra o
