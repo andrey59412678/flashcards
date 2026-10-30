@@ -1,0 +1,9 @@
+name = "flashcards-sync"
+account_id = "39bcee3340e480264dd1b05fd2b6bad8"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# One snapshot per sync code (namespace flashcards-sync-SYNC).
+[[kv_namespaces]]
+binding = "SYNC"
+id = "cd19d46a31f043b0a1e587681772134a"

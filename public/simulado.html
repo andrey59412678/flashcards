@@ -31,6 +31,24 @@
           <div id="study-topics" class="study-topics"></div>
         </section>
         <div id="history" class="history" hidden><h2>Últimas rodadas</h2><p id="history-hint" class="study-hint" hidden>Toque numa rodada para rever a correção.</p><ol id="history-list"></ol></div>
+        <section class="sync-box" aria-labelledby="sync-title">
+          <h2 id="sync-title">Outros aparelhos</h2>
+          <div id="sync-off">
+            <p class="study-hint">Com um código, o celular e o computador mostram o mesmo histórico e os mesmos erros. É um código por pessoa.</p>
+            <button id="sync-create" class="secondary" type="button">Criar código de sincronização</button>
+            <form id="sync-join" class="sync-join">
+              <label for="sync-input">Já tem um código?</label>
+              <div class="sync-row"><input id="sync-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="20 letras e números"><button class="secondary" type="submit">Conectar</button></div>
+            </form>
+          </div>
+          <div id="sync-on" hidden>
+            <p class="study-hint">Use este código no outro aparelho. Guarde-o, por exemplo mandando para você no WhatsApp: sem ele não dá para reconectar.</p>
+            <div class="sync-row"><code id="sync-code" class="sync-code"></code><button id="sync-copy" class="secondary" type="button">Copiar</button></div>
+            <p id="sync-status" class="bank-size"></p>
+            <button id="sync-now" class="text-button" type="button">Sincronizar agora</button>
+            <button id="sync-off-button" class="text-button" type="button">Desconectar este aparelho</button>
+          </div>
+        </section>
       </section>
 
       <section id="exam" hidden>

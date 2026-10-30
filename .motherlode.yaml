@@ -31,6 +31,12 @@ runbook: |
   O historico (30 rodadas) guarda ids/orders/answers de cada rodada (historyEntry); a home lista 10 e reabre a
   correcao completa com filtro erradas/certas/todas (reviewFromHistory). Entradas antigas sem respostas ficam
   so como linha. Comecar rodada nova com prova em andamento pede confirmacao.
+  Sincronizacao opcional entre aparelhos (public/sync.js + regras em public/merge.js): codigo de 20 chars
+  Crockford base32 gerado no navegador, sem conta. Cloudflare Worker flashcards-sync (sync-worker/, conta
+  andreyhcolombo@gmail.com, KV flashcards-sync-SYNC, TTL 1 ano renovado) em
+  https://flashcards-sync.andrey59412678.workers.dev; o PUT faz merge no servidor (rodadas e vistas por uniao,
+  erros por questao com data em simulado.missed-log.v1). Deploy: cd sync-worker && set -a &&
+  . ~/.config/flashcards-sync/cloudflare.env && set +a && npx wrangler deploy (token so com Workers/KV).
   Treino visual de sinalizacao horizontal em linhas.html (logica e SVG puros em road.js): rodadas de 12
   situacoes geradas (pode ultrapassar? / quem pode, com as alternativas no texto da prova / cor), voce sempre
   embaixo subindo. BANK_SCENES em road.js liga 18 questoes de linha do banco a uma cena; o simulado mostra o

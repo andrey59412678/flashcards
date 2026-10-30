@@ -1,9 +1,11 @@
 import { TOPICS, validateBank, drawExam, drawStudy, drawSet, coverage, updateSeen, optionOrders, newAttempt, choose, goTo, remainingMs, isExpired, finish, unanswered, score, restoreAttempt, updateMissed, historyEntry, reviewFromHistory, reviewPositions } from './exam.js';
 
 import { BANK_SCENES, roadSvg, explain } from './road.js';
+import { syncNow, newCode, parseCode, formatCode, currentCode, status as syncStatus, disconnect, hasLocalProgress } from './sync.js';
+import { recordMissed } from './merge.js';
 
 const $ = id => document.getElementById(id);
-const KEYS = { attempt: 'simulado.attempt.v1', missed: 'simulado.missed.v1', history: 'simulado.history.v1', seen: 'simulado.seen.v1' };
+const KEYS = { attempt: 'simulado.attempt.v1', missed: 'simulado.missed.v1', missedLog: 'simulado.missed-log.v1', history: 'simulado.history.v1', seen: 'simulado.seen.v1' };
 const STUDY_SIZE = 10;
 const KIND_NAMES = { exam: 'Prova', review: 'Treino de erros', study: 'Estudo' };
 // Study sets that cut across the four modules.
@@ -45,7 +47,8 @@ function notify(message) {
   clearTimeout(toastTimer);
   $('toast').textContent = message;
   $('toast').hidden = false;
-  toastTimer = setTimeout(() => { $('toast').hidden = true; }, 2800);
+  // Long messages stay up long enough to be read.
+  toastTimer = setTimeout(() => { $('toast').hidden = true; }, Math.max(2800, message.length * 70));
 }
 
 function show(section) {
@@ -110,6 +113,26 @@ function when(at) {
   return `${date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} ${date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
 }
 
+function renderSync() {
+  const code = currentCode();
+  $('sync-off').hidden = Boolean(code);
+  $('sync-on').hidden = !code;
+  if (!code) return;
+  $('sync-code').textContent = formatCode(code);
+  const last = syncStatus();
+  $('sync-status').textContent = !last ? 'Sincronizando…' : last.ok ? `Sincronizado em ${when(last.at)}.` : 'Sem conexão agora. Seu progresso fica salvo aqui e sobe na próxima vez.';
+}
+
+let lastSync = 0;
+
+// Merges with the other devices; refreshes the home screen only if something new arrived.
+async function sync(options) {
+  lastSync = Date.now();
+  const result = await syncNow(options);
+  if (!$('home').hidden) result.changed ? renderHome() : renderSync();
+  return result;
+}
+
 function renderHome() {
   const { questions, minutes, passScore } = bank.exam;
   $('exam-rules').textContent = `${questions} questões sorteadas, ${minutes} minutos. Para passar, acerte pelo menos ${passScore}. A correção só aparece quando você entregar.`;
@@ -170,6 +193,7 @@ function renderHome() {
     return item;
   }));
   $('history-hint').hidden = !history.some(entry => entry.review);
+  renderSync();
   show('home');
 }
 
@@ -281,12 +305,17 @@ function submit() {
   clearInterval(ticker);
   attempt = finish(attempt, Date.now());
   const result = score(attempt, bank);
-  save(KEYS.missed, updateMissed(load(KEYS.missed, []), attempt, bank));
+  const missedBefore = load(KEYS.missed, []);
+  const missedAfter = updateMissed(missedBefore, attempt, bank);
+  save(KEYS.missed, missedAfter);
+  // When each miss was added or fixed, so other devices merge question by question (merge.js).
+  save(KEYS.missedLog, recordMissed(load(KEYS.missedLog, {}), missedBefore, missedAfter, Date.now()));
   save(KEYS.seen, updateSeen(load(KEYS.seen, []), attempt, bank));
   const topic = attempt.kind === 'study' && !attempt.set ? byId.get(attempt.ids[0]).topic : undefined;
   save(KEYS.history, [historyEntry(attempt, bank, topic), ...loadHistory()].slice(0, 30));
   persistAttempt();
   renderResult();
+  sync();
 }
 
 function askSubmit() {
@@ -396,8 +425,46 @@ $('again').addEventListener('click', event => {
 });
 $('retry-wrong').addEventListener('click', () => startAttempt(score(viewing, bank).wrong, 'review'));
 $('home-link').addEventListener('click', renderHome);
+$('sync-create').addEventListener('click', async () => {
+  const result = await sync({ code: newCode(), create: true });
+  notify(result.ok ? 'Código criado. Guarde-o: sem ele não dá para reconectar.' : 'Sem internet agora. Tente de novo.');
+  renderSync();
+});
+$('sync-now').addEventListener('click', async () => {
+  $('sync-status').textContent = 'Sincronizando…';
+  const result = await sync();
+  if (!result.ok) notify('Sem internet agora. Tente de novo.');
+});
+$('sync-join').addEventListener('submit', async event => {
+  event.preventDefault();
+  const code = parseCode($('sync-input').value);
+  if (!code) return notify('Confira o código: são 20 letras e números.');
+  if (hasLocalProgress() && !window.confirm('Este aparelho já tem progresso. Ele vai se juntar ao desse código, e isso não dá para desfazer. Use só um código seu. Continuar?')) return;
+  const result = await sync({ code });
+  notify(result.ok ? 'Conectado. O progresso foi juntado.' : result.unknown ? 'Código não encontrado. Confira as letras.' : 'Sem internet agora. Tente de novo.');
+  if (result.ok) $('sync-input').value = '';
+  renderSync();
+});
+$('sync-copy').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(formatCode(currentCode()));
+    notify('Código copiado.');
+  } catch {
+    notify('Selecione o código e copie.');
+  }
+});
+$('sync-off-button').addEventListener('click', () => {
+  if (!window.confirm(`Este aparelho para de sincronizar, e o progresso dele continua aqui. Para reconectar depois, anote o código: ${formatCode(currentCode())}. Desconectar?`)) return;
+  disconnect();
+  renderSync();
+});
 $('reload').addEventListener('click', () => window.location.reload());
-document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) return;
+  tick();
+  // Coming back to an open tab: pick up what the other device did, at most once a minute.
+  if (bank && currentCode() && !$('home').hidden && Date.now() - lastSync > 60_000) sync();
+});
 
 // Read the drill's link once and drop it, so a later reload never starts a round nobody asked for.
 const wantsLines = window.location.hash === '#linhas';
@@ -423,6 +490,8 @@ try {
   } else {
     renderHome();
   }
+  // Pull what the other devices did; never blocks opening the page.
+  if (currentCode()) sync();
 } catch (error) {
   console.error('Não foi possível abrir o simulado:', error.message);
   $('error').hidden = false;

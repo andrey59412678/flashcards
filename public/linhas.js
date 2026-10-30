@@ -1,4 +1,5 @@
 import { SCENES, makeRound, question, roadSvg } from './road.js';
+import { syncNow, currentCode } from './sync.js';
 
 const $ = id => document.getElementById(id);
 const SIZE = 12;
@@ -99,6 +100,7 @@ function finish() {
   const total = round.length;
   const best = load(BEST_KEY, null);
   if (!best || correct > best.correct) save(BEST_KEY, { correct, total });
+  if (currentCode()) syncNow();
   const passed = correct >= Math.ceil(total * 2 / 3);
   $('d-verdict-box').classList.toggle('pass', passed);
   $('d-verdict-box').classList.toggle('fail', !passed);

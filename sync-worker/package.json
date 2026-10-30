@@ -1,0 +1,14 @@
+{
+  "name": "flashcards-sync",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 58732 --ip 127.0.0.1",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^3.114.17"
+  }
+}
